@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(1),
     },
     submit: {
@@ -54,17 +54,13 @@ export default function Login() {
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         if (emailTextArea.current) {
             if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Invalid email format, e.g.example@example.com')
             } else if (event.target.value === '') {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Email is required')
             } else if (!event.target.value.match(emailRegex)) {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Invalid email format, e.g. example@example.com')
                 handleEmailChange(event.target.value)
             } else {
-                setIsEmailValid(false);
                 setEmailErrorMessage('')
             }
         }
@@ -73,17 +69,13 @@ export default function Login() {
     const onPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         if (passwordTextArea.current) {
             if (event.target.value !== '' && !event.target.value.match(passwordRegex)) {
-                setIsPasswordValid(true);
                 setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
             } else if (event.target.value === '') {
-                setIsPasswordValid(true);
                 setPasswordErrorMessage('Password is required')
             } else if (!event.target.value.match(passwordRegex)) {
-                setIsPasswordValid(true);
                 setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
                 handlePasswordChange(event.target.value)
             } else {
-                setIsPasswordValid(false);
                 setPasswordErrorMessage('')
             }
         }
@@ -91,8 +83,6 @@ export default function Login() {
 
     const [email, handleEmailChange] = useState('');
     const [password, handlePasswordChange] = useState('');
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
-    const [isEmailValid, setIsEmailValid] = useState(false);
     const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('')
     const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('')
 
@@ -109,7 +99,7 @@ export default function Login() {
                 <form className={classes.form} noValidate onSubmit={handleSubmitForm} >
                     <TextField
                         ref={emailTextArea}
-                        error={isEmailValid}
+                        error={invalidEmailErrorMessage ? true : false}
                         helperText={invalidEmailErrorMessage}
                         variant="outlined"
                         margin="normal"
@@ -124,7 +114,7 @@ export default function Login() {
                     />
                     <TextField
                         ref={passwordTextArea}
-                        error={isPasswordValid}
+                        error={invalidPasswordErrorMessage ? true : false}
                         helperText={invalidPasswordErrorMessage}
                         variant="outlined"
                         margin="normal"

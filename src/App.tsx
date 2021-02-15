@@ -1,28 +1,25 @@
 import React from 'react';
-import { useFirestoreDocData, useFirestore } from 'reactfire';
-
-function Burrito() {
-    const burritoRef = useFirestore()
-        .collection('tryreactfire')
-        .doc('burrito');
-
-    const burrito = useFirestoreDocData(burritoRef);
-
-    const burritoData = burrito.data;
-
-    if(!burritoData) {
-        return <p>No burrito yet fetched</p>
-    }
-    // @ts-ignore
-    return <p>The burrito is {burritoData?.yummy ? 'good' : 'bad'}</p>;
-}
-
+import 'firebase/auth';
+import Login from "./Components/Login";
+import { BrowserRouter as Router,
+    Switch,
+    Route
+} from 'react-router-dom';
+import Register from "./Components/Register/Register";
 
 function App() {
   return (
     <div className="App">
-      <h1>APP works</h1>
-            <Burrito />
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/register">
+                    <Register/>
+                </Route>
+            </Switch>
+        </Router>
     </div>
   );
 }

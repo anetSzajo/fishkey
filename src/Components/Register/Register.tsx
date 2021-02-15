@@ -43,18 +43,13 @@ export default function Register() {
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         if (emailTextArea.current) {
             if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Invalid email format, e.g.example@example.com')
             } else if (event.target.value === '') {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Email is required')
             } else if (!event.target.value.match(emailRegex)) {
-                setIsEmailValid(true);
                 setEmailErrorMessage('Invalid email format, e.g. example@example.com')
                 setEmail(event.target.value);
-                console.log(event.target.value)
             } else {
-                setIsEmailValid(false);
                 setEmailErrorMessage('')
             }
         }
@@ -64,13 +59,10 @@ export default function Register() {
         setPassword(event.target.value)
 
         if (event.target.value.match(passwordRegex)) {
-            setIsPasswordValid(true);
             setPasswordErrorMessage('')
         } else if (event.target.value === '') {
-            setIsPasswordValid(false);
             setPasswordErrorMessage('Password is required')
         } else {
-            setIsPasswordValid(false);
             setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
         }
     }
@@ -79,10 +71,8 @@ export default function Register() {
     const onConfirmPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setConfirmPassword(event.target.value)
         if (password && password === event.target.value) {
-            setIsConfirmPasswordValid(true);
             setConfirmPasswordErrorMessage('')
         } else {
-            setIsConfirmPasswordValid(false);
             setConfirmPasswordErrorMessage('Passwords do not match')
         }
     }
@@ -90,10 +80,6 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
-    const [isEmailValid, setIsEmailValid] = useState(true);
-    const [isPasswordValid, setIsPasswordValid] = useState(true);
-    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
 
     const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('');
     const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -119,7 +105,7 @@ export default function Register() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                error={!isEmailValid}
+                                error={invalidEmailErrorMessage ? true : false}
                                 helperText={invalidEmailErrorMessage}
                                 ref={emailTextArea}
                                 variant="outlined"
@@ -134,7 +120,7 @@ export default function Register() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                error={!isPasswordValid}
+                                error={invalidPasswordErrorMessage ? true : false}
                                 helperText={invalidPasswordErrorMessage}
                                 ref={passwordTextArea}
                                 variant="outlined"
@@ -150,7 +136,7 @@ export default function Register() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                error={!isConfirmPasswordValid}
+                                error={invalidConfirmPasswordMessage ? true : false}
                                 helperText={invalidConfirmPasswordMessage}
                                 ref={repeatedPasswordTextArea}
                                 variant="outlined"
