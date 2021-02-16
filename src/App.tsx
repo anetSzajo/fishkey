@@ -8,6 +8,7 @@ import { BrowserRouter as Router,
 import Register from "./Components/Logged_Out/Register/Register";
 import {LoginHomePage} from "./Components/Logged_In/LoginHomePage/LoginHomePage";
 import LogoutHomePage from "./Components/Logged_Out/LogoutHomePgae/LogoutHomePage";
+import {AuthCheck} from "reactfire";
 
 function App() {
   return (
@@ -23,9 +24,11 @@ function App() {
                 <Route exact path="/login">
                     <Login />
                 </Route>
-                <Route exact path='/dashboard'>
-                    <LoginHomePage />
-                </Route>
+                <AuthCheck fallback={<LogoutHomePage />}>
+                    <Route exact path='/dashboard'>
+                        <LoginHomePage />
+                    </Route>
+                </AuthCheck>
             </Switch>
         </Router>
     </div>

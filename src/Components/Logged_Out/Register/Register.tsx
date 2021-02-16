@@ -82,7 +82,7 @@ export default function Register() {
 
     const handleSubmitRegisterForm = () => {
         firebase.auth()
-            .createUserWithEmailAndPassword(email, password)
+            .createUserWithEmailAndPassword(email, confirmPassword)
             .catch((error: any) => console.log(error))
         console.log('Registered!')
         history.push('/login');
@@ -136,10 +136,10 @@ export default function Register() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="repeatedPassword"
+                                name="confirmPassword"
                                 label="Repeat Password"
                                 type="password"
-                                id="repeatedPassword"
+                                id="confirmPassword"
                                 autoComplete="current-password"
                                 onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onConfirmPasswordChange(event)}
                             />
