@@ -1,6 +1,6 @@
 import {useAuth} from 'reactfire';
 import React, {ChangeEvent, FormEvent, useRef, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {emailRegex, passwordRegex} from "../../utlis";
+import {emailRegex, passwordRegex} from "../../../utlis";
 
 const useStyles = makeStyles((theme: Theme) => ({
     paper: {
@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function Login() {
     const classes = useStyles();
     const auth = useAuth();
-    const emailTextArea = useRef(null);
-    const passwordTextArea = useRef(null);
+    const history = useHistory();
 
-    const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
+        console.log("Login button clicked");
         event.preventDefault();
         try {
             await auth.signInWithEmailAndPassword(email, password);
@@ -48,36 +48,35 @@ export default function Login() {
         } catch (err) {
             alert('Could not login: ' + err)
         }
-
+        console.log('Logged!')
+        history.push('/dashboard');
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        if (emailTextArea.current) {
-            if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
-                setEmailErrorMessage('Invalid email format, e.g.example@example.com')
-            } else if (event.target.value === '') {
-                setEmailErrorMessage('Email is required')
-            } else if (!event.target.value.match(emailRegex)) {
-                setEmailErrorMessage('Invalid email format, e.g. example@example.com')
-                handleEmailChange(event.target.value)
-            } else {
-                setEmailErrorMessage('')
-            }
+        handleEmailChange(event.target.value);
+        if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
+            setEmailErrorMessage('Invalid email format, e.g.example@example.com')
+        } else if (event.target.value === '') {
+            setEmailErrorMessage('Email is required')
+        } else if (!event.target.value.match(emailRegex)) {
+            setEmailErrorMessage('Invalid email format, e.g. example@example.com')
+            handleEmailChange(event.target.value)
+        } else {
+            setEmailErrorMessage('')
         }
     }
 
     const onPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        if (passwordTextArea.current) {
-            if (event.target.value !== '' && !event.target.value.match(passwordRegex)) {
-                setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
-            } else if (event.target.value === '') {
-                setPasswordErrorMessage('Password is required')
-            } else if (!event.target.value.match(passwordRegex)) {
-                setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
-                handlePasswordChange(event.target.value)
-            } else {
-                setPasswordErrorMessage('')
-            }
+        handlePasswordChange(event.target.value);
+        if (event.target.value !== '' && !event.target.value.match(passwordRegex)) {
+            setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
+        } else if (event.target.value === '') {
+            setPasswordErrorMessage('Password is required')
+        } else if (!event.target.value.match(passwordRegex)) {
+            setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
+            handlePasswordChange(event.target.value)
+        } else {
+            setPasswordErrorMessage('')
         }
     }
 
@@ -96,9 +95,8 @@ export default function Login() {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmitForm} >
+                <form className={classes.form} noValidate onSubmit={handleSubmitLoginForm} >
                     <TextField
-                        ref={emailTextArea}
                         error={invalidEmailErrorMessage ? true : false}
                         helperText={invalidEmailErrorMessage}
                         variant="outlined"
@@ -113,7 +111,6 @@ export default function Login() {
                         onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onEmailChange(event)}
                     />
                     <TextField
-                        ref={passwordTextArea}
                         error={invalidPasswordErrorMessage ? true : false}
                         helperText={invalidPasswordErrorMessage}
                         variant="outlined"
@@ -141,29 +138,14 @@ export default function Login() {
                         Sign In
                     </Button>
                     <Grid container>
-                        {/*<Grid item xs>*/}
-                        {/*    <Link href="#" variant="body2">*/}
-                        {/*        Forgot password?*/}
-                        {/*    </Link>*/}
-                        {/*</Grid>*/}
                         <Grid item>
-                            <Link to="/register">
+                            <Link to="/">
                                 "Don't have an account? Register"
                             </Link>
                         </Grid>
                     </Grid>
                 </form>
             </div>
-            {/*<Box mt={8}>*/}
-            {/*    <Typography variant="body2" color="textSecondary" align="center">*/}
-            {/*        {'Copyright © '}*/}
-            {/*        <Link color="inherit" href="https://material-ui.com/">*/}
-            {/*            Your Website*/}
-            {/*        </Link>{' '}*/}
-            {/*        {new Date().getFullYear()}*/}
-            {/*        {'.'}*/}
-            {/*    </Typography>*/}
-            {/*</Box>*/}
         </Container>
     );
 }

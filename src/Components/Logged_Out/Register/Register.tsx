@@ -1,5 +1,5 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {ChangeEvent, useState} from 'react';
+import {Link, useHistory } from 'react-router-dom';
 import firebase from "firebase";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {emailRegex, passwordRegex} from "../../utlis";
+import {emailRegex, passwordRegex} from "../../../utlis";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -35,29 +35,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
     const classes = useStyles();
-    const emailTextArea = useRef(null);
-    const passwordTextArea = useRef(null);
-    const repeatedPasswordTextArea = useRef(null);
-
+    const history = useHistory();
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        if (emailTextArea.current) {
-            if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
-                setEmailErrorMessage('Invalid email format, e.g.example@example.com')
-            } else if (event.target.value === '') {
-                setEmailErrorMessage('Email is required')
-            } else if (!event.target.value.match(emailRegex)) {
-                setEmailErrorMessage('Invalid email format, e.g. example@example.com')
-                setEmail(event.target.value);
-            } else {
-                setEmailErrorMessage('')
-            }
+        setEmail(event.target.value);
+        if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
+            setEmailErrorMessage('Invalid email format, e.g.example@example.com')
+        } else if (event.target.value === '') {
+            setEmailErrorMessage('Email is required')
+        } else if (!event.target.value.match(emailRegex)) {
+            setEmailErrorMessage('Invalid email format, e.g. example@example.com')
+            setEmail(event.target.value);
+        } else {
+            setEmailErrorMessage('')
         }
     }
 
     const onPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setPassword(event.target.value)
-
         if (event.target.value.match(passwordRegex)) {
             setPasswordErrorMessage('')
         } else if (event.target.value === '') {
@@ -85,10 +80,12 @@ export default function Register() {
     const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('');
     const [invalidConfirmPasswordMessage, setConfirmPasswordErrorMessage] = useState('');
 
-    const handleSignUpForm = () => {
+    const handleSubmitRegisterForm = () => {
         firebase.auth()
             .createUserWithEmailAndPassword(email, password)
             .catch((error: any) => console.log(error))
+        console.log('Registered!')
+        history.push('/login');
     }
 
     return (
@@ -101,13 +98,12 @@ export default function Register() {
                 <Typography component="h1" variant="h5">
                     Register
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSignUpForm}>
+                <form className={classes.form} noValidate onSubmit={handleSubmitRegisterForm}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
                                 error={invalidEmailErrorMessage ? true : false}
                                 helperText={invalidEmailErrorMessage}
-                                ref={emailTextArea}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -122,7 +118,6 @@ export default function Register() {
                             <TextField
                                 error={invalidPasswordErrorMessage ? true : false}
                                 helperText={invalidPasswordErrorMessage}
-                                ref={passwordTextArea}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -138,7 +133,6 @@ export default function Register() {
                             <TextField
                                 error={invalidConfirmPasswordMessage ? true : false}
                                 helperText={invalidConfirmPasswordMessage}
-                                ref={repeatedPasswordTextArea}
                                 variant="outlined"
                                 required
                                 fullWidth
