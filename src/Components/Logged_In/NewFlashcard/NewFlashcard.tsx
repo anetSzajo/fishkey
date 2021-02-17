@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {useFirestore} from "reactfire";
+import {useFirestore, useUser} from "reactfire";
 import {Flashcard} from "../../../Modal/Flashcard/Flashcard";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NewFlashcard(){
     const classes = useStyles();
+    const {data: user} = useUser();
 
     const [question, setQuestion] = useState('');
     const [category, setCategory] = useState('');
@@ -45,10 +46,10 @@ export default function NewFlashcard(){
             question: question,
             category: category,
             stage: 1,
-            uid: '9pV4PkzyNShSvYtOca5DMziZz223'
+            uid: user.uid
         }
 
-        db.doc("new-flash-id")
+        db.doc(`flash-${newFlashcard.answer}`)
             .set(newFlashcard)
             .then(x => console.log(newFlashcard))
             .then(r => console.log('Flashcard added!'))
