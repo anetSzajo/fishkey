@@ -44,7 +44,6 @@ export default function Login() {
         event.preventDefault();
         try {
             await auth.signInWithEmailAndPassword(email, password);
-            alert('loggedin!!!');
         } catch (err) {
             alert('Could not login: ' + err)
         }
@@ -139,7 +138,7 @@ export default function Login() {
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link to="/">
+                            <Link to="/register">
                                 "Don't have an account? Register"
                             </Link>
                         </Grid>

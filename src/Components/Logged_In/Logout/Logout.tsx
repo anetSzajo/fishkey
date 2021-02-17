@@ -7,17 +7,13 @@ export default function Logout() {
     const auth = useAuth();
     const history = useHistory();
 
-    const handleLogout = (event: React.MouseEvent) => {
-        event.preventDefault();
-        console.log('Logout button clicked!')
+    const handleLogout = () => {
         auth.signOut()
-                .then(r =>  console.log('Logged Out!'))
-                .catch(err => console.log('Could not logout' + err))
-        history.push('/');
-        console.log('Logged Out and history changed!')
+            .then(() => history.push('/'))
+            .catch(err => console.log('Could not logout' + err))
     }
 
-    return(
-        <button onClick={(event: React.MouseEvent<HTMLButtonElement>) => handleLogout(event)}>Logout</button>
+    return (
+        <button onClick={handleLogout}>Logout</button>
     )
 }

@@ -1,14 +1,16 @@
 import React from "react";
 import {useFirestore, useFirestoreCollectionData, useUser} from 'reactfire';
+import {Flashcard} from "../../../Modal/Flashcard/Flashcard";
 
 export default function UserCard() {
 
     const {data: user} = useUser();
+
     const allFlashesQuery = useFirestore()
         .collection('Flashes')
         .where("uid", "==", user.uid)
 
-    const flashes = useFirestoreCollectionData<{question: string, answer: string}>(allFlashesQuery);
+    const flashes = useFirestoreCollectionData<Flashcard>(allFlashesQuery);
 
     return (
         <div>
