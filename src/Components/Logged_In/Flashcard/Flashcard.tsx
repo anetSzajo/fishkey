@@ -52,6 +52,7 @@ export default class Flashcard extends React.Component<FlashcardModel, State>{
                    <button onClick={this.handleCorrectButton} disabled={this.props.stage === 'archived'}>Correct</button>
                    <button onClick={this.handleWrongButton}>Wrong</button>
                </div>
+               <DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>
            </div>
        )
     }
