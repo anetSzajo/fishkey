@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Link, useHistory } from 'react-router-dom';
-import firebase from "firebase";
+import firebase from 'firebase/app';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';

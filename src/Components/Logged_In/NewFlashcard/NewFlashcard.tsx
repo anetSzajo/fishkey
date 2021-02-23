@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {useHistory} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
@@ -7,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import {useFirestore, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
+import GoBackButton from "../../GoBackButton/GoBackButton";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NewFlashcard(){
     const classes = useStyles();
     const {data: user} = useUser();
+    const history = useHistory();
 
     const [question, setQuestion] = useState('');
     const [category, setCategory] = useState('');
@@ -52,8 +55,10 @@ export default function NewFlashcard(){
         db.doc(`flash-${newFlashcard.question}`)
             .set(newFlashcard)
             .then(x => console.log(newFlashcard))
-            .then(r => console.log('Flashcard added!'))
+            .then(y => history.goBack())
             .catch(err => console.log('Can not add flashcard' + err))
+
+
     }
 
     return (
@@ -101,6 +106,7 @@ export default function NewFlashcard(){
                 </CardActions>
             </form>
             </CardContent>
+            <GoBackButton />
         </Card>
     );
 }
