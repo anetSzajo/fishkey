@@ -6,7 +6,7 @@ export function LoginHomePage() {
     return (
         <div>
             <h1>Welcome in your app</h1>
-            <UserCard/>
+            {/*<UserCard/>*/}
             <Logout/>
         </div>
     )

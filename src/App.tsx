@@ -12,6 +12,7 @@ import LogoutHomePage from "./Components/Logged_Out/LogoutHomePgae/LogoutHomePag
 import {AuthCheck} from "reactfire";
 import NewFlashcard from "./Components/Logged_In/NewFlashcard/NewFlashcard";
 import NewFlashcardButton from "./Components/Logged_In/NewFlashcardButton/NewFlashcardButton";
+import FlashcardsDashboard from './Components/Logged_In/FlashcardsDashboard/FlashcardsDashboard';
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                         <AuthCheck fallback={<Redirect to='/'/>}>
                             <LoginHomePage/>
                             <NewFlashcardButton />
+                            <FlashcardsDashboard />
                         </AuthCheck>
                     </Route>
                     <Route exact path='/addNewFlashCard'>
