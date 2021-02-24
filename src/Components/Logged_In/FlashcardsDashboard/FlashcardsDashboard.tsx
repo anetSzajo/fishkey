@@ -7,7 +7,7 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import FilterFlashcardsByStage from "../FilterFlashcardsByStage/FilterFlashcardsByStage";
+import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
 
 const useStyles = makeStyles({
     root: {
@@ -43,13 +43,12 @@ export default function FlashcardsDashboard() {
     return (
         <div className={classes.root}>
             {flashes?.length ?
-                <Flashcard key={`flashcard-${flashes[activeStep].question}`}
+                <Flashcard key={`flashcard-${flashes[activeStep]?.question}`}
                            {...flashes[activeStep]}
                 />
                 :
                 null
             }
-
             <MobileStepper
                 steps={maxSteps ? maxSteps : 0}
                 position="static"
@@ -68,7 +67,7 @@ export default function FlashcardsDashboard() {
                     </Button>
                 }
             />
-            <FilterFlashcardsByStage flashcards={flashes ? flashes : []}/>
+            <CountFlashcardByStage flashcards={flashes ? flashes : []}/>
         </div>
     )
 }

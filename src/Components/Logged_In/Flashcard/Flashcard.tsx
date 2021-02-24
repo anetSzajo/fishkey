@@ -2,6 +2,7 @@ import React from "react";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import firebase from 'firebase/app';
 import DeleteFlashcardButton from "../DeleteFlashcardButton/DeleteFlashcardButton";
+import EditFlashcardButton from "../EditFlashcardButton/EditFlashcardButton";
 
 type State = {
     stage: number | string
@@ -52,6 +53,7 @@ export default class Flashcard extends React.Component<FlashcardModel, State>{
                    <button onClick={this.handleCorrectButton} disabled={this.props.stage === 'archived'}>Correct</button>
                    <button onClick={this.handleWrongButton}>Wrong</button>
                </div>
+               <EditFlashcardButton />
                <DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>
            </div>
        )
