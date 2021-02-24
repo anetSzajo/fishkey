@@ -37,18 +37,15 @@ export default function FlashcardsDashboard() {
         .collection('Flashes')
         .where("uid", "==", user.uid)
 
-    const flashes = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery);
-    const maxSteps = flashes.data?.length;
+    const flashes = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
+    const maxSteps = flashes?.length;
 
     return (
         <div className={classes.root}>
-            {flashes.data ?
-                <Flashcard key={`flashcard-${flashes.data[activeStep].question}`}
-                           answer={flashes.data[activeStep].answer}
-                           category={flashes.data[activeStep].category}
-                           question={flashes.data[activeStep].question}
-                           stage={flashes.data[activeStep].stage}
-                           uid={flashes.data[activeStep].uid}/>
+            {flashes?.length ?
+                <Flashcard key={`flashcard-${flashes[activeStep].question}`}
+                           {...flashes[activeStep]}
+                />
                 :
                 null
             }
@@ -71,7 +68,7 @@ export default function FlashcardsDashboard() {
                     </Button>
                 }
             />
-            <FilterFlashcardsByStage flashcards={flashes.data ? flashes.data : []}/>
+            <FilterFlashcardsByStage flashcards={flashes ? flashes : []}/>
         </div>
     )
 }
