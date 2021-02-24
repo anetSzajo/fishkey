@@ -2,7 +2,7 @@ import React from "react";
 import {useFirestore, useFirestoreCollectionData, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import Flashcard from "../Flashcard/Flashcard";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';

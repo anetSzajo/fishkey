@@ -16,13 +16,7 @@ type Accumulator = {
 
 export default function CountFlashcardByStage(props: ComponentProps) {
 
-    let [flashcards, setFlashcards] = useState(props.flashcards)
-
-    useEffect(() => {
-        setFlashcards(props.flashcards)
-    }, [props.flashcards])
-
-    const countFlashcardByStage = flashcards.reduce(function (accumulator: Accumulator, currentValue: FlashcardModel): Accumulator {
+    const countFlashcardByStage = props.flashcards.reduce(function (accumulator: Accumulator, currentValue: FlashcardModel): Accumulator {
         if (currentValue.stage === 1) {
             return {...accumulator, firstBox: accumulator.firstBox + 1}
         }
@@ -38,7 +32,7 @@ export default function CountFlashcardByStage(props: ComponentProps) {
         else if (currentValue.stage === 5) {
             return {...accumulator, fifthBox: accumulator.fifthBox + 1}
         }
-        else if (currentValue.stage === 6) {
+        else if (currentValue.stage === 'archived') {
             return {...accumulator, archivedBox: accumulator.archivedBox + 1}
         }
         return accumulator;

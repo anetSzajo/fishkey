@@ -13,6 +13,12 @@ export default class Flashcard extends React.Component<FlashcardModel, State>{
     stage = this.props.stage;
     db = firebase.firestore();
 
+    componentDidUpdate(prevProps: Readonly<FlashcardModel>) {
+        if (this.props.stage !== prevProps.stage){
+            this.updateFirestoreData(this.props.stage)
+        }
+    }
+
     updateFirestoreData = (stage: number | string) => {
         this.db.collection('Flashes')
             .doc(`flash-${this.props.question}`)
@@ -31,7 +37,8 @@ export default class Flashcard extends React.Component<FlashcardModel, State>{
                 console.log('Should be archive')
                 this.updateFirestoreData('archived')
             } else {
-                this.updateFirestoreData(this.stage + 1)
+                this.stage = this.stage + 1
+                this.updateFirestoreData(this.stage)
                 console.log("stage changed to " + this.stage)
             }
         }
