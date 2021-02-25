@@ -8,22 +8,26 @@ type State = {
     stage: number | string
 }
 
-export default class Flashcard extends React.Component<FlashcardModel, State>{
+export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_FIELD?:string}, State>{
 
     stage = this.props.stage;
     db = firebase.firestore();
 
     componentDidUpdate(prevProps: Readonly<FlashcardModel>) {
         if (this.props.stage !== prevProps.stage){
-            this.updateFirestoreData(this.props.stage)
+            this.updateFlashcard(this.props.stage)
         }
     }
 
-    updateFirestoreData = (stage: number | string) => {
+    updateFlashcard = (stage: number | string) => {
+        console.log(this.props.NO_ID_FIELD)
         this.db.collection('Flashes')
-            .doc(`flash-${this.props.question}`)
+            .doc(this.props.NO_ID_FIELD)
             .update(
-                {stage: stage}
+                {
+                    stage: stage,
+                    isActive: false
+                    }
             )
             .then(r => console.log('Stage updated in firebase'))
             .catch(err => console.log('Error when updating in firebase' + err))
@@ -35,10 +39,10 @@ export default class Flashcard extends React.Component<FlashcardModel, State>{
         if (typeof this.stage === 'number') {
             if (this.stage === 5) {
                 console.log('Should be archive')
-                this.updateFirestoreData('archived')
+                this.updateFlashcard('archived')
             } else {
                 this.stage = this.stage + 1
-                this.updateFirestoreData(this.stage)
+                this.updateFlashcard(this.stage)
                 console.log("stage changed to " + this.stage)
             }
         }

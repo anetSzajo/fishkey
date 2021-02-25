@@ -3,5 +3,6 @@ export type FlashcardModel = {
     category: string;
     question: string;
     stage: number | string;
-    uid: string
+    uid: string;
+    isActive: true;
 }

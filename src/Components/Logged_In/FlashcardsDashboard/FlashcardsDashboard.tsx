@@ -9,6 +9,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
 
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 400,
@@ -22,6 +23,14 @@ export default function FlashcardsDashboard() {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
 
+    const {data: user} = useUser();
+
+    const allFlashesQuery = useFirestore()
+        .collection('Flashes')
+        .where("uid", "==", user.uid)
+
+    const flashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
+    const maxSteps = flashcards?.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -31,21 +40,10 @@ export default function FlashcardsDashboard() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const {data: user} = useUser();
-
-    const allFlashesQuery = useFirestore()
-        .collection('Flashes')
-        .where("uid", "==", user.uid)
-
-    const flashes = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
-    const maxSteps = flashes?.length;
-
     return (
         <div className={classes.root}>
-            {flashes?.length ?
-                <Flashcard key={`flashcard-${flashes[activeStep]?.question}`}
-                           {...flashes[activeStep]}
-                />
+            {flashcards?.length ?
+                <Flashcard {...flashcards[activeStep]}/>
                 :
                 null
             }
@@ -67,7 +65,7 @@ export default function FlashcardsDashboard() {
                     </Button>
                 }
             />
-            <CountFlashcardByStage flashcards={flashes ? flashes : []}/>
+            <CountFlashcardByStage flashcards={flashcards ? flashcards : []}/>
         </div>
     )
 }

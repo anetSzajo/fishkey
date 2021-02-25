@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import {useFirestore, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
-import GoBackButton from "../../GoBackButton/GoBackButton";
+import GoBackButton from "../GoBackButton/GoBackButton";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -49,10 +49,11 @@ export default function NewFlashcard(){
             question: question,
             category: category,
             stage: 1,
-            uid: user.uid
+            uid: user.uid,
+            isActive: true
         }
 
-        db.doc(`flash-${newFlashcard.question}`)
+        db.doc()
             .set(newFlashcard)
             .then(x => console.log(newFlashcard))
             .then(y => history.goBack())

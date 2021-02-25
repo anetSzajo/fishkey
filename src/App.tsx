@@ -1,18 +1,16 @@
 import React from 'react';
 import 'firebase/auth';
 import Login from "./Components/Logged_Out/Login";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route, Redirect
-} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Register from "./Components/Logged_Out/Register/Register";
 import {LoginHomePage} from "./Components/Logged_In/LoginHomePage/LoginHomePage";
 import LogoutHomePage from "./Components/Logged_Out/LogoutHomePgae/LogoutHomePage";
 import {AuthCheck} from "reactfire";
 import NewFlashcard from "./Components/Logged_In/NewFlashcard/NewFlashcard";
 import NewFlashcardButton from "./Components/Logged_In/NewFlashcardButton/NewFlashcardButton";
-import FlashcardsDashboard from './Components/Logged_In/FlashcardsDashboard/FlashcardsDashboard';
+import StartTraining from "./Components/Logged_In/StartTraining/StartTraining";
+import FlashcardsDashboard from "./Components/Logged_In/FlashcardsDashboard/FlashcardsDashboard";
+import EndTraining from "./Components/Logged_In/EndTraining/EndTraining";
 
 function App() {
     return (
@@ -28,11 +26,17 @@ function App() {
                     <Route exact path="/login">
                         <Login/>
                     </Route>
-                    <Route exact path='/dashboard'>
+                    <Route exact path='/startTraining'>
                         <AuthCheck fallback={<Redirect to='/'/>}>
                             <LoginHomePage/>
                             <NewFlashcardButton />
-                            <FlashcardsDashboard />
+                            <StartTraining />
+                        </AuthCheck>
+                    </Route>
+                    <Route exact path='/dashboard'>
+                        <AuthCheck fallback={<Redirect to='/'/>}>
+                            <FlashcardsDashboard/>
+                            <EndTraining />
                         </AuthCheck>
                     </Route>
                     <Route exact path='/addNewFlashCard'>
