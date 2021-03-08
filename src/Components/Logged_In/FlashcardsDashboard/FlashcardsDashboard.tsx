@@ -30,6 +30,7 @@ export default function FlashcardsDashboard() {
         .where("uid", "==", user.uid)
         .where("isActive", "==", true)
 
+
     const flashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
 
     const firstStageFlashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery.where("stage", "==", 1)).data;
@@ -55,7 +56,6 @@ export default function FlashcardsDashboard() {
     //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     // };
 
-    console.log(allFlashcards);
     return (
         <div className={classes.root}>
             { allFlashcards?.map(flashcard =>

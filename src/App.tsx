@@ -7,10 +7,10 @@ import {LoginHomePage} from "./Components/Logged_In/LoginHomePage/LoginHomePage"
 import LogoutHomePage from "./Components/Logged_Out/LogoutHomePgae/LogoutHomePage";
 import {AuthCheck} from "reactfire";
 import NewFlashcard from "./Components/Logged_In/NewFlashcard/NewFlashcard";
-import NewFlashcardButton from "./Components/Logged_In/NewFlashcardButton/NewFlashcardButton";
-import StartTraining from "./Components/Logged_In/StartTraining/StartTraining";
 import FlashcardsDashboard from "./Components/Logged_In/FlashcardsDashboard/FlashcardsDashboard";
 import EndTraining from "./Components/Logged_In/EndTraining/EndTraining";
+import FlashcardsCategories from "./Components/Logged_In/FlashcardsCategories/FlashcardsCategories";
+import CategoryFlashcardsPage from "./Components/Logged_In/CategoryFlashcardsPage/CategoryFlashcardsPage";
 
 function App() {
     return (
@@ -26,11 +26,15 @@ function App() {
                     <Route exact path="/login">
                         <Login/>
                     </Route>
-                    <Route exact path='/startTraining'>
+                    <Route exact path='/home'>
                         <AuthCheck fallback={<Redirect to='/'/>}>
                             <LoginHomePage/>
-                            <NewFlashcardButton />
-                            <StartTraining />
+                            <FlashcardsCategories />
+                        </AuthCheck>
+                    </Route>
+                    <Route exact path='/categoryPage'>
+                        <AuthCheck fallback={<Redirect to='/'/>}>
+                           <CategoryFlashcardsPage />
                         </AuthCheck>
                     </Route>
                     <Route exact path='/dashboard'>

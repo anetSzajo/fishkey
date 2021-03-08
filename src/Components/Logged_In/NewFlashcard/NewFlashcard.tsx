@@ -34,7 +34,7 @@ export default function NewFlashcard(){
         setQuestion(event.target.value)
     }
     const onCategoryChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setCategory(event.target.value)
+        setCategory(event.target.value.toUpperCase())
     }
     const onAnswerChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setAnswer(event.target.value)

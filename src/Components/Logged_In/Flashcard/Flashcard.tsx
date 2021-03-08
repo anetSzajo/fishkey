@@ -2,7 +2,6 @@ import React from "react";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import firebase from 'firebase/app';
 import DeleteFlashcardButton from "../DeleteFlashcardButton/DeleteFlashcardButton";
-import EditFlashcardButton from "../EditFlashcardButton/EditFlashcardButton";
 
 type State = {
     stage: number | string
@@ -20,7 +19,7 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
     }
 
     updateFlashcard = (stage: number | string) => {
-        console.log(this.props.NO_ID_FIELD)
+        console.log('DOC ID:' + this.props.NO_ID_FIELD)
         this.db.collection('Flashes')
             .doc(this.props.NO_ID_FIELD)
             .update(
@@ -50,6 +49,15 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
 
     handleWrongButton = () => {
         console.log('Wrong button clicked');
+        this.db.collection('Flashes')
+            .doc(this.props.NO_ID_FIELD)
+            .update(
+                {
+                    isActive: false
+                }
+            )
+            .then(r => console.log('Status changed to false'))
+            .catch(err => console.log('Error when updating in firebase' + err))
     }
 
 
@@ -64,7 +72,6 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
                    <button onClick={this.handleCorrectButton} disabled={this.props.stage === 'archived'}>Correct</button>
                    <button onClick={this.handleWrongButton}>Wrong</button>
                </div>
-               <EditFlashcardButton />
                <DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>
            </div>
        )
