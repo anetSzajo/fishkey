@@ -3,20 +3,11 @@ import {useHistory} from 'react-router-dom';
 import firebase from "firebase/app";
 import {useUser} from "reactfire";
 
-
 export default function EndTraining() {
     const history = useHistory();
     const {data: user} = useUser();
 
-    // const allFlashesQuery = useFirestore()
-    //     .collection('Flashes')
-    //     .where("uid", "==", user.uid)
-
-    // const flashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
-
     const updateFlashcardsActiveStatus = async () => {
-
-
         try {
             firebase.firestore().collection('Flashes')
                 .where("uid", "==", user.uid)
@@ -38,12 +29,11 @@ export default function EndTraining() {
         }
     }
 
-
     const handleEndTrainingButtonClick = (event: React.MouseEvent) => {
         updateFlashcardsActiveStatus()
             .then(() => console.log("Active status successfully updated"))
             .catch(err => console.log("Can't update active status" + err))
-        history.push('/startTraining');
+        history.push('/home');
     }
 
     return (

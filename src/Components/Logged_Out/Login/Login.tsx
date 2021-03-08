@@ -48,7 +48,7 @@ export default function Login() {
             alert('Could not login: ' + err)
         }
         console.log('Logged!')
-        history.push('/startTraining');
+        history.push('/home');
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
