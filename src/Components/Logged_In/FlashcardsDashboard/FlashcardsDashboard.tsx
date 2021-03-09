@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
-
+import {useLocation} from "react-router";
 
 const useStyles = makeStyles({
     root: {
@@ -24,11 +24,13 @@ export default function FlashcardsDashboard() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const {data: user} = useUser();
+    const location = useLocation<{trainingCategory: string}>();
 
     const allFlashesQuery = useFirestore()
         .collection('Flashes')
         .where("uid", "==", user.uid)
         .where("isActive", "==", true)
+        .where("category", "==", location.state.trainingCategory)
 
 
     const flashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;

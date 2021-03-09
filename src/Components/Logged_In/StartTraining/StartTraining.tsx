@@ -1,11 +1,14 @@
 import React from "react";
-import {useHistory} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
-export default function StartTraining(){
-    const history = useHistory();
+type Props = {
+    trainingCategory: string
+}
+
+export default function StartTraining(props: Props){
 
     const handleStartTrainingButtonClick = (event: React.MouseEvent) => {
-        history.push('/dashboard');
+        return <Redirect to={{pathname: '/dashboard', state: { trainingCategory: props.trainingCategory}}} />
     }
 
     return(
