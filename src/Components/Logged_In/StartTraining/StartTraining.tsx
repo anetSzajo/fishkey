@@ -1,17 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Redirect} from 'react-router-dom'
 
-type Props = {
-    trainingCategory: string
-}
+export default function StartTraining(props: { trainingCategory: string }){
 
-export default function StartTraining(props: Props){
+    const [buttonPressed, setButtonPressed] = useState(false);
 
-    const handleStartTrainingButtonClick = (event: React.MouseEvent) => {
-        return <Redirect to={{pathname: '/dashboard', state: { trainingCategory: props.trainingCategory}}} />
+    if (buttonPressed) {
+        return <Redirect push to={{pathname: '/dashboard', state: { trainingCategory: props.trainingCategory}}} />
     }
-
-    return(
-        <button onClick={handleStartTrainingButtonClick}>START TRAINING</button>
-    )
+    else {
+        return (
+            <button onClick={() => setButtonPressed(true)}>START TRAINING</button>
+        )
+    }
 }
