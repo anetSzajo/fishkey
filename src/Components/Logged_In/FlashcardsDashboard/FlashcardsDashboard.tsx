@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 export default function FlashcardsDashboard() {
 
     const classes = useStyles();
+
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
 
@@ -45,10 +46,10 @@ export default function FlashcardsDashboard() {
         (firstStageFlashcards?.length ? firstStageFlashcards : null) ||
         (secondStageFlashcards?.length ? secondStageFlashcards : null) ||
         (thirdStageFlashcards?.length ? thirdStageFlashcards : null) ||
-        (fourthStageFlashcards?.length ? thirdStageFlashcards : null) ||
-        (fifthStageFlashcards?.length ? thirdStageFlashcards : null);
+        (fourthStageFlashcards?.length ? fourthStageFlashcards : null) ||
+        (fifthStageFlashcards?.length ? fifthStageFlashcards : null);
 
-    const maxSteps = flashcards?.length;
+    const maxSteps = allFlashcards?.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -60,12 +61,20 @@ export default function FlashcardsDashboard() {
 
     return (
         <div className={classes.root}>
-            { allFlashcards?.map(flashcard =>
-                    <Flashcard
-                        {...flashcard}
-                        key={`flashcard-${flashcard.question}`}
-                    />
-                )
+            {/*{ allFlashcards?.map((flashcard, activeStep) =>*/}
+            {/*        <Flashcard*/}
+            {/*            {...allFlashcards[activeStep]}*/}
+            {/*            key={`flashcard-${allFlashcards[activeStep].question}`}*/}
+            {/*        />*/}
+            {/*    )*/}
+            {/*}*/}
+            {allFlashcards?.length
+                ?
+                <Flashcard
+                    {...allFlashcards[activeStep]}
+                />
+                :
+                null
             }
             <MobileStepper
                 steps={maxSteps ? maxSteps : 0}
@@ -73,7 +82,7 @@ export default function FlashcardsDashboard() {
                 variant="text"
                 activeStep={activeStep}
                 nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                    <Button size="small" onClick={handleNext} disabled={maxSteps ? activeStep === maxSteps - 1 : maxSteps === 0}>
                         Next
                         {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}
                     </Button>
