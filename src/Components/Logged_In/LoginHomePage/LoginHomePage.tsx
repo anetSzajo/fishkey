@@ -5,7 +5,7 @@ import Logout from "../Logout/Logout";
 export function LoginHomePage() {
     return (
         <div>
-            <h1>Welcome in your app</h1>
+            <h1>Welcome</h1>
             <UserCard/>
             <Logout/>
         </div>

@@ -7,7 +7,7 @@ export default function UserCard() {
 
     return (
         <div>
-            <h1>Logged as: {user.email} with id: {user.uid}</h1>
+            <h1>Logged as: {user.email}</h1>
         </div>
     )
 }
