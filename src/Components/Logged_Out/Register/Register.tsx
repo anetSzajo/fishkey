@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Link, useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import firebase from 'firebase/app';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
+import '../../../main.scss';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -18,10 +19,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        fontColor: 'white',
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: '#FB8F67',
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -89,80 +91,82 @@ export default function Register() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline/>
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Register
-                </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmitRegisterForm}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                error={invalidEmailErrorMessage ? true : false}
-                                helperText={invalidEmailErrorMessage}
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onEmailChange(event)}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                error={invalidPasswordErrorMessage ? true : false}
-                                helperText={invalidPasswordErrorMessage}
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={onPasswordChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                error={invalidConfirmPasswordMessage ? true : false}
-                                helperText={invalidConfirmPasswordMessage}
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="confirmPassword"
-                                label="Repeat Password"
-                                type="password"
-                                id="confirmPassword"
-                                autoComplete="current-password"
-                                onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onConfirmPasswordChange(event)}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
+        <div className="registerPage">
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon/>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
                         Register
-                    </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link to='/login'>
-                                Already have an account? Login
-                            </Link>
+                    </Typography>
+                    <form className={classes.form} noValidate onSubmit={handleSubmitRegisterForm}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    error={invalidEmailErrorMessage ? true : false}
+                                    helperText={invalidEmailErrorMessage}
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onEmailChange(event)}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    error={invalidPasswordErrorMessage ? true : false}
+                                    helperText={invalidPasswordErrorMessage}
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={onPasswordChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    error={invalidConfirmPasswordMessage ? true : false}
+                                    helperText={invalidConfirmPasswordMessage}
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="confirmPassword"
+                                    label="Repeat Password"
+                                    type="password"
+                                    id="confirmPassword"
+                                    autoComplete="current-password"
+                                    onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onConfirmPasswordChange(event)}
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className="button form-btn register-btn"
+                        >
+                            Register
+                        </Button>
+                        <Grid container>
+                            <Grid item>
+                                <Link to='/login'>
+                                    Already have an account? Login
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+                </div>
+            </Container>
+        </div>
     );
 }

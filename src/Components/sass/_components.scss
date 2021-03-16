@@ -3,5 +3,87 @@
 body,
 html {
   margin: unset;
+  width: 100vw;
+  height: 100vh;
   font-family: $default-font;
+  background: white !important;
+}
+
+.logoutPage{
+  //background: $main-color !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  background: $second-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 190px;
+  width: 192px;
+  border-radius: 95px;
+  opacity: 0.65;
+  margin: 0 auto 4rem auto;
+  box-shadow: 7px 10px 5px 0px rgb(0 0 0 / 12%);
+
+  img{
+    height: 100px;
+    width: 97px;
+  }
+  p{
+    font-size: 16px;
+  }
+}
+
+.button,
+.form-btn{
+  border-radius: 10px;
+  width: 382px;
+  height: 77px;
+  font-size: 22px;
+  border: none;
+  color: black !important;
+  box-shadow: 4px 9px 15px 0px rgb(0 0 0 / 12%);
+  margin: 2rem 0 1rem 0 !important;
+  a{
+    text-decoration: none;
+    color: black;
+  }
+}
+.login-btn{
+  background: $third-color !important;
+  margin: 6rem auto 2rem auto;
+  color: white;
+}
+.register-btn{
+  margin-top: 2rem !important;
+  background: $fifth-color !important;
+}
+
+.formInput{
+  border: 4px solid $third-color;
+  color: white;
+}
+.loginPage,
+.registerPage{
+  background: white;
+  border: 4px solid $third-color;
+  border-radius: 8px;
+  margin: 38px 21px;
+  color: black;
+  padding: 11px 10px;
+  a{
+    text-decoration: none;
+    margin-top: 1rem;
+    color: black;
+  }
+}
+
+.registerPage{
+  border: 4px solid $fifth-color;
 }
