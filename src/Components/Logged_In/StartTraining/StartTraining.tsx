@@ -10,7 +10,7 @@ export default function StartTraining(props: { trainingCategory: string }){
     }
     else {
         return (
-            <button onClick={() => setButtonPressed(true)}>START TRAINING</button>
+            <button className="button-small start-btn" onClick={() => setButtonPressed(true)}>START TRAINING</button>
         )
     }
 }

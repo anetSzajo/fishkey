@@ -10,6 +10,6 @@ export default function GoBackButton() {
     }
 
     return (
-        <button onClick={handleGoingBack}>GO BACK</button>
+        <button className=" nav-btn goBack-btn" onClick={handleGoingBack}>Go Back</button>
     )
 }

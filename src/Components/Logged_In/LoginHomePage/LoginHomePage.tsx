@@ -1,13 +1,13 @@
 import React from "react";
 import UserCard from "../UserCard/UserCard";
-import Logout from "../Logout/Logout";
+import FlashcardsCategories from "../FlashcardsCategories/FlashcardsCategories";
+import {AuthCheck} from "reactfire";
 
 export function LoginHomePage() {
     return (
         <div>
-            <h1>Welcome</h1>
-            <UserCard/>
-            <Logout/>
+            {/*<UserCard/>*/}
+            <FlashcardsCategories />
         </div>
     )
 }

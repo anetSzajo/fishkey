@@ -24,9 +24,12 @@ export default function CategoryFlashcardsPage(){
         <div>
             {location.state.category && allFlashcardsByCategory
                 ?
-                <div>
-                    <StartTraining trainingCategory={location.state.category}/>
-                    <NewFlashcardButton/>
+                <div className="flashcardsCategoryPage">
+                    <h1>Category: {location.state.category}</h1>
+                    <div className="category-btn__container">
+                        <StartTraining trainingCategory={location.state.category}/>
+                        <NewFlashcardButton/>
+                    </div>
                     <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
                     <GoBackButton />
                 </div>

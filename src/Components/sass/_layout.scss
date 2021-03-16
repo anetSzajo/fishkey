@@ -1,1 +1,42 @@
 @import 'base';
+
+.category-btn__container{
+  display: flex;
+  flex-display: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flashcard-preview__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+
+.category-btn__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin: 2rem auto;
+}
+
+.addNewFlashcard__container{
+   width: 90%;
+  margin: auto;
+  text-align: center;
+  h1{
+    margin: 5rem 10px 2rem 10px;
+  }
+}
+
+.addNewFlashcard__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

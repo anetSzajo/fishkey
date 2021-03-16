@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export default function NewFlashcard(){
+export default function NewFlashcard() {
     const classes = useStyles();
     const {data: user} = useUser();
     const history = useHistory();
@@ -64,50 +64,51 @@ export default function NewFlashcard(){
 
     return (
         <Card className={classes.root}>
-            <CardContent>
-            <form className={classes.root} noValidate autoComplete="off">
-                <CardContent>
-                    <TextField
-                        required
-                        name="category"
-                        id="outlined-required"
-                        label="Required"
-                        defaultValue="Category"
-                        variant="outlined"
-                        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onCategoryChange(event)}
-                    />
-                    <TextField
-                        required
-                        name="question"
-                        id="outlined-required"
-                        label="Required"
-                        defaultValue="Answer"
-                        variant="outlined"
-                        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onQuestionChange(event)}
-                    />
-                    <TextField
-                        required
-                        name="answer"
-                        id="outlined-required"
-                        label="Required"
-                        defaultValue="Question"
-                        variant="outlined"
-                        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onAnswerChange(event)}
-                    />
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="stage"
-                        defaultValue="1"
-                        variant="outlined"
-                    />
-                </CardContent>
-                <CardActions>
-                    <Button size="small" onClick={addNewFlashcard}>Add!</Button>
-                </CardActions>
-            </form>
+            <CardContent className="addNewFlashcard__container">
+                <h1>New Flashcard</h1>
+                <form noValidate autoComplete="off" className="addNewFlashcard__form">
+                    <CardContent>
+                        <TextField
+                            required
+                            name="category"
+                            id="outlined-required"
+                            label="Category"
+                            defaultValue="Category"
+                            variant="outlined"
+                            onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onCategoryChange(event)}
+                        />
+                        <TextField
+                            required
+                            name="question"
+                            id="outlined-required"
+                            label="Question"
+                            defaultValue="Question"
+                            variant="outlined"
+                            onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onQuestionChange(event)}
+                        />
+                        <TextField
+                            required
+                            name="answer"
+                            id="outlined-required"
+                            label="Answer"
+                            defaultValue="Answer"
+                            variant="outlined"
+                            onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onAnswerChange(event)}
+                        />
+                        <TextField
+                            disabled
+                            id="outlined-disabled"
+                            label="stage"
+                            defaultValue="1"
+                            variant="outlined"
+                        />
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" className="button-small add-btn" onClick={addNewFlashcard}>Add</Button>
+                    </CardActions>
+                </form>
             </CardContent>
-            <GoBackButton />
+            <GoBackButton/>
         </Card>
     );
 }

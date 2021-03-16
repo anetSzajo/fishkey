@@ -1,7 +1,7 @@
 import {useAuth} from 'reactfire';
 import React from "react";
 import {useHistory} from "react-router-dom";
-
+import '../../../main.scss';
 
 export default function Logout() {
     const auth = useAuth();
@@ -14,6 +14,6 @@ export default function Logout() {
     }
 
     return (
-        <button onClick={handleLogout}>Logout</button>
+        <button className="nav-btn logout-btn" onClick={handleLogout}>Logout</button>
     )
 }

@@ -9,6 +9,6 @@ export default function NewFlashcardButton(){
     }
 
     return(
-        <button onClick={handleButtonClicked}>New Flashcard</button>
+        <button className="button-small newFlashcard-btn" onClick={handleButtonClicked}>New Flashcard</button>
     )
 }

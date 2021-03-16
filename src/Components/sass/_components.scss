@@ -9,6 +9,15 @@ html {
   background: white !important;
 }
 
+.button-small{
+  border-radius: $default-border-radius;
+  border: none;
+  color: black !important;
+  box-shadow: 4px 9px 15px 0px rgb(0 0 0 / 12%);
+  padding: 12px;
+  margin: 0.5rem;
+}
+
 .logoutPage{
   //background: $main-color !important;
   height: 100vh;
@@ -42,7 +51,7 @@ html {
 
 .button,
 .form-btn{
-  border-radius: 10px;
+  border-radius: $default-border-radius;
   width: 382px;
   height: 77px;
   font-size: 22px;
@@ -87,3 +96,73 @@ html {
 .registerPage{
   border: 4px solid $fifth-color;
 }
+
+.nav-btn{
+  position: fixed;
+  top: 0;
+  margin: 10px;
+  padding: 10px;
+  background: $fourth-color;
+  border: none;
+  border-radius: $default-border-radius;
+}
+.logout-btn{
+  right: 2%;
+}
+.goBack-btn{
+  left: 2%;
+}
+
+.flashcardsCategoriesPage,
+.flashcardsCategoryPage{
+  h1{
+    margin: 5rem 10px 2rem 10px;
+  }
+  .category-btn{
+    display: flex;
+    height: 9rem;
+    width: 30%;
+    flex-display: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $second-color;
+    border-radius: $default-border-radius;
+    padding: 1rem;
+    margin: auto 1rem;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.flashcard-preview{
+  width: 10rem;
+  height: 6rem;
+  margin: 2rem 4px 1rem 15px;
+  border: 3px solid $third-color;
+  border-radius: $default-border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+}
+
+//.start-btn,
+//.newFlashcard-btn{
+//
+//}
+
+.footer{
+  background-color: $fourth-color;
+  opacity: $default-opacity;
+  font-size: 11px;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  p{
+    margin: 0;
+    text-align: left;
+    padding: 1px 0 2px 4px;
+    color: black;
+  }
+}
+

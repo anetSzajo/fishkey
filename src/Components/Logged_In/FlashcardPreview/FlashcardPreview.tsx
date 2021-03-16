@@ -1,12 +1,13 @@
 import React from "react";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
+import '../../../main.scss';
 
 type ComponentProps = {
     flashcardsFromCategory: FlashcardModel[]
 }
 
 export default function FlashcardsPreview(props: ComponentProps) {
-    return <div>
-        {props?.flashcardsFromCategory.map(flashcard => <p key={`flashcard-${flashcard.question}`}>{flashcard.question}</p>)}
+    return <div className="flashcard-preview__container">
+        {props?.flashcardsFromCategory.map(flashcard => <p className="flashcard-preview" key={`flashcard-${flashcard.question}`}>{flashcard.question}</p>)}
     </div>
 }
