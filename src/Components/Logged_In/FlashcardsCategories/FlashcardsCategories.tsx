@@ -19,20 +19,10 @@ export default function FlashcardsCategories() {
     const getUniqueCategories: string[] = [...new Set(allCategories?.map(item => item.category))]
 
     const handleNext = () => {
-        if (activeCategory === getUniqueCategories.length -1){
-            return null;
-        }
-        else{
-            setActiveCategory(activeCategory => activeCategory + 1);
-        }
+        setActiveCategory(activeCategory => activeCategory + 1);
     }
     const handleBack = () => {
-        if (activeCategory === 0){
-            return null;
-        }
-        else {
-            setActiveCategory(activeCategory => activeCategory - 1);
-        }
+        setActiveCategory(activeCategory => activeCategory - 1);
     }
 
     return (
@@ -48,17 +38,18 @@ export default function FlashcardsCategories() {
                     ?
                     <Link className="category-btn" to={{pathname: "/categoryPage", state: {category: getUniqueCategories[activeCategory]}}} key={`flashcard-${getUniqueCategories[activeCategory]}`}>
                         <h2 className="category-btn__name">{getUniqueCategories[activeCategory]}</h2>
+                        <p className="cards" ><img alt="" src="/icons/cards.png"/>X</p>
                     </Link>
                     :
                     null
                 }
+                <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
+                    <img alt="" src="/icons/backArrow.png" />
+                </button>
+                <button className="next-btn" onClick={handleNext} disabled={activeCategory === getUniqueCategories.length -1}>
+                    <img alt="" src="/icons/backArrow.png" />
+                </button>
             </div>
-            <button className="next-btn" onClick={handleNext}>
-                <img alt="" src="/icons/backArrow.png" />
-            </button>
-            <button className="back-btn" onClick={handleBack}>
-                <img alt="" src="/icons/backArrow.png" />
-            </button>
             <GoBackButton/>
         </div>
     )

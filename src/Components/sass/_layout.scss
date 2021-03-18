@@ -5,6 +5,7 @@
   flex-display: column;
   justify-content: center;
   align-items: center;
+  position: fixed;
 }
 
 .flashcard-preview__container{
@@ -18,10 +19,10 @@
 
 .category-btn__container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75%;
+  width: 100vw;
   margin: 2rem auto;
 }
 .MuiPaper-root{
@@ -72,4 +73,9 @@
       opacity: $default-opacity;
     }
   }
+}
+
+.category-menu-buttons__container{
+  display: flex;
+  justify-content: center;
 }

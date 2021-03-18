@@ -28,11 +28,11 @@ export default function CategoryFlashcardsPage(){
                 <div className="flashcardsCategoryPage">
                     <GoBackButton />
                     <h1>Category: {location.state.category}</h1>
-                    <div className="category-btn__container">
+                    <div className="category-menu-buttons__container">
                         <StartTraining trainingCategory={location.state.category}/>
                         <NewFlashcardButton/>
                     </div>
-                    <h2>All {location.state.category} flashcards</h2>
+                    <p className="cards-big"><img alt="" src="/icons/cards.png"/>{allFlashcardsByCategory.length}</p>
                     <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
                     <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
                 </div>

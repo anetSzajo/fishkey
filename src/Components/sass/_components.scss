@@ -98,7 +98,7 @@ html {
 }
 
 .nav-btn{
-  position: fixed;
+  position: absolute;
   top: 0;
   margin: 10px;
   padding: 4px 5px;
@@ -120,21 +120,44 @@ html {
 .flashcardsCategoriesPage,
 .flashcardsCategoryPage{
   h1{
-    margin: 5rem 10px 2rem 10px;
+    margin: 8rem 10px 2rem 10px;
+  }
+  h2{
+    margin: 1rem 0.2rem;
   }
   .category-btn{
-    display: flex;
-    height: 9rem;
-    width: 30%;
-    flex-display: column;
-    justify-content: center;
-    align-items: center;
+    position: initial;
+    height: 11rem;
+    width: 34%;
     border: 2px solid $second-color;
     border-radius: $default-border-radius;
     padding: 1rem;
-    margin: auto 1rem;
+    margin: 1rem 1rem;
     text-decoration: none;
     color: black;
+    .category-btn__name{
+      font-size: 30px;
+    }
+  }
+  .cards{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 6%;
+    img{
+      height: 1.2rem;
+      padding-right: 3px;
+    }
+  }
+  .cards-big{
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      height: 3rem;
+      padding-right: 7px;
+    }
   }
 }
 
@@ -223,4 +246,35 @@ html {
   top: 25%;
   left: 50%;
   margin-left: -94.42px;
+}
+
+.next-btn,
+.back-btn{
+  position: absolute;
+  margin: 10px;
+  padding: 4px 5px;
+  border: none;
+  background: $second-color;
+  border-radius: $default-border-radius;
+  img {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.next-btn:disabled,
+.back-btn:disabled{
+  background:lightgray !important;
+}
+
+.next-btn{
+  right: 8%;
+  img {
+    transform: rotate(180deg);
+  }
+}
+
+
+.back-btn{
+  left: 8%;
 }
