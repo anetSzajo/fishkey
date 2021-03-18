@@ -101,10 +101,14 @@ html {
   position: fixed;
   top: 0;
   margin: 10px;
-  padding: 10px;
-  background: $fourth-color;
+  padding: 4px 5px;
   border: none;
+  background: $second-color;
   border-radius: $default-border-radius;
+  img{
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }
 .logout-btn{
   right: 2%;

@@ -1,5 +1,6 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
+import '../../../main.scss';
 
 export default function GoBackButton() {
 
@@ -10,6 +11,8 @@ export default function GoBackButton() {
     }
 
     return (
-        <button className=" nav-btn goBack-btn" onClick={handleGoingBack}>Go Back</button>
+        <button className=" nav-btn goBack-btn" onClick={handleGoingBack}>
+            <img alt="" src="/icons/backArrow.png" />
+        </button>
     )
 }

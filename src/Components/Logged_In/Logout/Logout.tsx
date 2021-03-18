@@ -14,6 +14,8 @@ export default function Logout() {
     }
 
     return (
-        <button className="nav-btn logout-btn" onClick={handleLogout}>Logout</button>
+        <button className="nav-btn logout-btn" onClick={handleLogout}>
+            <img alt="" src="/icons/logout.png" />
+        </button>
     )
 }
