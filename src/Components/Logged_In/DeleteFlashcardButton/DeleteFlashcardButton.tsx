@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "firebase/app";
+import '../../../main.scss';
 
 type ComponentProps = {
     documentPath: string
@@ -24,6 +25,6 @@ export default function DeleteFlashcardButton(props: ComponentProps) {
     }
 
     return (
-        <button onClick={handleDeleteFlashcard}>Delete</button>
+        <button className="flashcard-delete-btn" onClick={handleDeleteFlashcard}>Delete</button>
     )
 }

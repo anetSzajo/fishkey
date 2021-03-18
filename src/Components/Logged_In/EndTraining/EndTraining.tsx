@@ -2,6 +2,7 @@ import React from "react";
 import {useHistory} from 'react-router-dom';
 import firebase from "firebase/app";
 import {useUser} from "reactfire";
+import '../../../main.scss';
 
 export default function EndTraining() {
     const history = useHistory();
@@ -37,6 +38,6 @@ export default function EndTraining() {
     }
 
     return (
-        <button onClick={handleEndTrainingButtonClick}>END TRAINING</button>
+        <button className="button-small end-btn" onClick={handleEndTrainingButtonClick}>END TRAINING</button>
     )
 }

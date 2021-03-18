@@ -42,59 +42,51 @@ export default function FlashcardsDashboard() {
     const fourthStageFlashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery.where("stage", "==", 4)).data;
     const fifthStageFlashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery.where("stage", "==", 5)).data;
 
-    const allFlashcards: FlashcardModel[] | null =
+    const allFlashcards: FlashcardModel[] | null | string =
         (firstStageFlashcards?.length ? firstStageFlashcards : null) ||
         (secondStageFlashcards?.length ? secondStageFlashcards : null) ||
         (thirdStageFlashcards?.length ? thirdStageFlashcards : null) ||
         (fourthStageFlashcards?.length ? fourthStageFlashcards : null) ||
         (fifthStageFlashcards?.length ? fifthStageFlashcards : null);
 
-    const maxSteps = allFlashcards?.length;
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    // const maxSteps = allFlashcards?.length;
+    //
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // };
+    //
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
 
     return (
         <div className={classes.root}>
-            {/*{ allFlashcards?.map((flashcard, activeStep) =>*/}
-            {/*        <Flashcard*/}
-            {/*            {...allFlashcards[activeStep]}*/}
-            {/*            key={`flashcard-${allFlashcards[activeStep].question}`}*/}
-            {/*        />*/}
-            {/*    )*/}
-            {/*}*/}
             {allFlashcards?.length
                 ?
                 <Flashcard
                     {...allFlashcards[activeStep]}
                 />
                 :
-                null
+                <p className="notification">Good job! Everything trained</p>
             }
-            <MobileStepper
-                steps={maxSteps ? maxSteps : 0}
-                position="static"
-                variant="text"
-                activeStep={activeStep}
-                nextButton={
-                    <Button size="small" onClick={handleNext} disabled={maxSteps ? activeStep === maxSteps - 1 : maxSteps === 0}>
-                        Next
-                        {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight/> : <KeyboardArrowLeft/>}
-                        Back
-                    </Button>
-                }
-            />
-            <CountFlashcardByStage flashcards={flashcards ? flashcards : []}/>
+            {/*<MobileStepper*/}
+            {/*    steps={maxSteps ? maxSteps : 0}*/}
+            {/*    position="static"*/}
+            {/*    variant="text"*/}
+            {/*    activeStep={activeStep}*/}
+            {/*    nextButton={*/}
+            {/*        <Button size="small" onClick={handleNext} disabled={maxSteps ? activeStep === maxSteps - 1 : maxSteps === 0}>*/}
+            {/*            Next*/}
+            {/*            {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}*/}
+            {/*        </Button>*/}
+            {/*    }*/}
+            {/*    backButton={*/}
+            {/*        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>*/}
+            {/*            {theme.direction === 'rtl' ? <KeyboardArrowRight/> : <KeyboardArrowLeft/>}*/}
+            {/*            Back*/}
+            {/*        </Button>*/}
+            {/*    }*/}
+            {/*/>*/}
         </div>
     )
 }

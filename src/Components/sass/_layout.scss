@@ -24,6 +24,9 @@
   width: 75%;
   margin: 2rem auto;
 }
+.MuiPaper-root{
+  box-shadow: none !important;
+}
 
 .addNewFlashcard__container{
    width: 90%;
@@ -39,4 +42,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: none !important;
+}
+.flashcard__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 37% auto;
+}
+.flashcard-bottom__container{
+  width: 100%;
+  position: absolute;
+  bottom: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.flashcard-btn__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .flashcard-btn{
+    border: none;
+    background: none;
+    img {
+      width: 2rem;
+      height: 2rem;
+      opacity: $default-opacity;
+    }
+  }
 }

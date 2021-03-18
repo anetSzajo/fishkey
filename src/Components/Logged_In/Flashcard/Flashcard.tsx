@@ -2,18 +2,24 @@ import React from "react";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import firebase from 'firebase/app';
 import DeleteFlashcardButton from "../DeleteFlashcardButton/DeleteFlashcardButton";
+import '../../../main.scss';
 
 type State = {
-    stage: number | string
+    stage: number | string,
+    showRevers: boolean
 }
 
-export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_FIELD?:string}, State>{
+export default class Flashcard extends React.Component<FlashcardModel & { NO_ID_FIELD?: string }, State> {
 
-    stage = this.props.stage;
+    state = {
+        showRevers: false,
+        stage: this.props.stage
+    }
+
     db = firebase.firestore();
 
     componentDidUpdate(prevProps: Readonly<FlashcardModel>) {
-        if (this.props.stage !== prevProps.stage){
+        if (this.props.stage !== prevProps.stage) {
             this.updateFlashcard(this.props.stage)
         }
     }
@@ -26,7 +32,7 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
                 {
                     stage: stage,
                     isActive: false
-                    }
+                }
             )
             .then(r => console.log('Stage updated in firebase'))
             .catch(err => console.log('Error when updating in firebase' + err))
@@ -34,15 +40,16 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
 
     handleCorrectButton = () => {
         console.log('Correct button clicked');
+        let {stage} = this.state;
 
-        if (typeof this.stage === 'number') {
-            if (this.stage === 5) {
+        if (typeof stage === 'number') {
+            if (stage === 5) {
                 console.log('Should be archive')
                 this.updateFlashcard('archived')
             } else {
-                this.stage = this.stage + 1
-                this.updateFlashcard(this.stage)
-                console.log("stage changed to " + this.stage)
+                stage = stage + 1
+                this.updateFlashcard(stage)
+                console.log("stage changed to " + stage)
             }
         }
     }
@@ -60,20 +67,41 @@ export default class Flashcard extends React.Component<FlashcardModel & {NO_ID_F
             .catch(err => console.log('Error when updating in firebase' + err))
     }
 
+    handleRotateFlashcard = () => {
+        this.setState({
+            showRevers: !this.state.showRevers
+        })
+    }
 
-    render(){
-       return(
-           <div>
-               <div>Category: {this.props.category}</div>
-               <div>Question: {this.props.question}</div>
-               <div>Answer: {this.props.answer}</div>
-               <div>Stage: {this.props.stage}</div>
-               <div>
-                   <button onClick={this.handleCorrectButton} disabled={this.props.stage === 'archived'}>Correct</button>
-                   <button onClick={this.handleWrongButton}>Wrong</button>
-               </div>
-               <DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>
-           </div>
-       )
+    render() {
+        return (
+            <div className="flashcard__container">
+                <div className="flashcard">
+                    <div className="flashcard-category">{this.props.category}</div>
+                    {this.state.showRevers
+                        ?
+                        <div className="flashcard-answer">{this.props.answer}</div>
+                        :
+                        <div className="flashcard-question">{this.props.question}</div>
+                    }
+                    <div className="flashcard-bottom__container">
+                        <div className="flashcard-stage">{this.props.stage}/5</div>
+                        <div className="flashcard-btn__container">
+                            <button className="flashcard-btn correct" onClick={this.handleCorrectButton}
+                                    disabled={this.props.stage === 'archived'}>
+                                <img alt="" src="/icons/correct.png"/>
+                            </button>
+                            <button className="flashcard-btn" onClick={this.handleWrongButton}>
+                                <img alt="" src="/icons/wrong.png"/>
+                            </button>
+                        </div>
+                        <button className="flashcard-rotate-btn" onClick={this.handleRotateFlashcard}>
+                            <img alt="" src="/icons/rotating-circular-arrow.png"/>
+                        </button>
+                    </div>
+                </div>
+                <DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>
+            </div>
+        )
     }
 }

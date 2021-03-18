@@ -6,6 +6,7 @@ import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import FlashcardsPreview from "../FlashcardPreview/FlashcardPreview";
 import {useLocation} from "react-router";
 import GoBackButton from "../GoBackButton/GoBackButton";
+import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
 
 
 export default function CategoryFlashcardsPage(){
@@ -25,13 +26,15 @@ export default function CategoryFlashcardsPage(){
             {location.state.category && allFlashcardsByCategory
                 ?
                 <div className="flashcardsCategoryPage">
+                    <GoBackButton />
                     <h1>Category: {location.state.category}</h1>
                     <div className="category-btn__container">
                         <StartTraining trainingCategory={location.state.category}/>
                         <NewFlashcardButton/>
                     </div>
+                    <h2>All {location.state.category} flashcards</h2>
                     <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
-                    <GoBackButton />
+                    <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
                 </div>
                 :
                 null
