@@ -7,7 +7,7 @@ import FlashcardsPreview from "../FlashcardPreview/FlashcardPreview";
 import {useLocation} from "react-router";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
-
+import '../../../main.scss';
 
 export default function CategoryFlashcardsPage(){
 

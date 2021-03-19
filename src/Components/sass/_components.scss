@@ -119,6 +119,7 @@ html {
 
 .flashcardsCategoriesPage,
 .flashcardsCategoryPage{
+  padding-bottom: 10rem;
   h1{
     margin: 8rem 10px 2rem 10px;
   }
@@ -170,7 +171,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.3rem;
+  padding: 0.5rem;
 }
 
 .footer{
@@ -274,7 +275,40 @@ html {
   }
 }
 
-
 .back-btn{
   left: 8%;
+}
+
+.box{
+  padding: 0 4px;
+  .box-first{
+    width: $first-box-width;
+    height: $first-box-height;
+  }
+  .box-second{
+    width: $first-box-width * 2;
+    height: $first-box-height * 2;
+  }
+  .box-third{
+    width: $first-box-width * 3;
+    height: $first-box-width * 3;
+  }
+  .box-fourth{
+    width: $first-box-width * 4;
+    height: $first-box-width * 4;
+  }
+  .box-fifth{
+    width: $first-box-width * 5;
+    height: $first-box-width * 5;
+  }
+  .cards{
+    width: 3rem;
+    bottom: 2%;
+    right: 2%;
+    p{
+      position: absolute;
+      bottom: 0%;
+      left: 42%;
+    }
+  }
 }
