@@ -9,6 +9,7 @@
 }
 
 .flashcard-preview__container{
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -81,15 +82,23 @@
 }
 
 .boxes__container{
-  width: 90vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-  margin: 6rem auto;
+  display: grid;
+  background: lightgray;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 40px 20px;
+  padding: 9px 5px;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 1rem;
+  border: 3px solid grey;
+  border-radius: $default-border-radius;
+  box-shadow: 4px 9px 15px 0px rgb(0 0 0 / 12%);
 }
-.cards__container{
-  position: absolute;
-  bottom: -40px;
-  //right: 7%;
+
+
+@media(min-width: 40rem) {
+  .category-btn__container {
+    width: 34%;
+    margin: 1rem auto;
+  }
 }

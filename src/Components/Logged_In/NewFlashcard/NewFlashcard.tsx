@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import {useFirestore, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import GoBackButton from "../GoBackButton/GoBackButton";
+import '../../../main.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

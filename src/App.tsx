@@ -42,7 +42,6 @@ function App() {
                     <Route exact path='/dashboard'>
                         <AuthCheck fallback={<Redirect to='/'/>}>
                             <FlashcardsDashboard/>
-                            <EndTraining />
                         </AuthCheck>
                         <Logout />
                     </Route>

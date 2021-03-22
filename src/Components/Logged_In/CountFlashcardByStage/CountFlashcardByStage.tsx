@@ -1,7 +1,6 @@
 import React from 'react';
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import '../../../main.scss';
-import Box from "../Box/Box";
 
 type ComponentProps = {
     flashcards: FlashcardModel[]
@@ -46,20 +45,16 @@ export default function CountFlashcardByStage(props: ComponentProps) {
         {countFlashcardByStage}
             ?
             <div className="boxes__container">
-                <Box count={countFlashcardByStage.firstBox} boxClass={'box-first'}/>
-                <Box count={countFlashcardByStage.secondBox} boxClass={'box-second'}/>
-                <Box count={countFlashcardByStage.thirdBox} boxClass={'box-third'}/>
-                <Box count={countFlashcardByStage.fourthBox} boxClass={'box-fourth'}/>
-                <Box count={countFlashcardByStage.fifthBox} boxClass={'box-fifth'}/>
-                {/*<Box count={countFlashcardByStage.archivedBox} boxClass={'box-archived'}/>*/}
-
-
-                {/*<p>Stage 1: {countFlashcardByStage.firstBox} flashcards</p>*/}
-                {/*<p>Stage 2: {countFlashcardByStage.secondBox} flashcards</p>*/}
-                {/*<p>Stage 3: {countFlashcardByStage.thirdBox} flashcards</p>*/}
-                {/*<p>Stage 4: {countFlashcardByStage.fourthBox} flashcards</p>*/}
-                {/*<p>Stage 5: {countFlashcardByStage.fifthBox} flashcards</p>*/}
-                {/*<p>Archived: {countFlashcardByStage.archivedBox} flashcards</p>*/}
+                <p className="counter">{countFlashcardByStage.firstBox}</p>
+                <p className="counter">{countFlashcardByStage.secondBox}</p>
+                <p className="counter">{countFlashcardByStage.thirdBox}</p>
+                <p className="counter">{countFlashcardByStage.fourthBox}</p>
+                <p className="counter">{countFlashcardByStage.fourthBox}</p>
+                <p>I</p>
+                <p>II</p>
+                <p>III</p>
+                <p>IV</p>
+                <p>V</p>
             </div>
             :
             null

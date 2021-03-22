@@ -17,7 +17,6 @@ export default function FlashcardsPreview(props: ComponentProps) {
     }
 
     return <div className="flashcard-preview__container">
-        {/*{props?.flashcardsFromCategory.map(flashcard => <p className="flashcard-preview" key={`flashcard-${flashcard.question}`}>{flashcard.question}</p>)}*/}
         {props?.flashcardsFromCategory.length
             ?
             <p className="flashcard-preview" key={`flashcard-${props.flashcardsFromCategory[activeCategory].question}`}>{props.flashcardsFromCategory[activeCategory].question}</p>

@@ -5,7 +5,7 @@ html {
   margin: unset;
   width: 100vw;
   height: 100vh;
-  font-family: $default-font;
+  //font-family: $default-font !important;
   background: white !important;
 }
 
@@ -80,6 +80,7 @@ html {
 }
 .loginPage,
 .registerPage{
+  height: 35rem;
   background: white;
   border: 4px solid $third-color;
   border-radius: 8px;
@@ -123,8 +124,9 @@ html {
   h1{
     margin: 8rem 10px 2rem 10px;
   }
-  h2{
-    margin: 1rem 0.2rem;
+  h2,
+  h3{
+    margin: 4rem 0.2rem 2rem 0.2rem;
   }
   .category-btn{
     position: initial;
@@ -138,6 +140,7 @@ html {
     color: black;
     .category-btn__name{
       font-size: 30px;
+      text-align: center;
     }
   }
   .cards{
@@ -163,7 +166,7 @@ html {
 }
 
 .flashcard-preview{
-  width: 10rem;
+  width: 12rem;
   height: 6rem;
   margin: 2rem 4px 1rem 15px;
   border: 3px solid $third-color;
@@ -172,6 +175,7 @@ html {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+  text-align: center;
 }
 
 .footer{
@@ -191,7 +195,7 @@ html {
 
 .flashcard{
   position: fixed;
-  width: 80%;
+  width: 80vw;
   height: 10rem;
   padding: 1rem;
   background: $third-color;
@@ -233,6 +237,10 @@ html {
     color: blue;
     -webkit-text-stroke: 2px white;
   }
+}
+.counter{
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .end-btn{
@@ -279,41 +287,23 @@ html {
   left: 8%;
 }
 
-.box{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 4px;
-  .box-first{
-    width: $first-box-width;
-    height: $first-box-height;
+
+@media(min-width: 40rem){
+  .loginPage,
+  .registerPage,
+  .flashcardsCategoryPage,
+  .flashcardsCategoriesPage,
+  .addNewFlashcard__container{
+    width: 34vw;
+    margin: 55px auto;
   }
-  .box-second{
-    width: $first-box-width * 2;
-    height: $first-box-height * 2;
+  .flashcard{
+    width: 28vw;
+    margin: -19rem auto;
   }
-  .box-third{
-    width: $first-box-width * 3;
-    height: $first-box-width * 3;
-  }
-  .box-fourth{
-    width: $first-box-width * 4;
-    height: $first-box-width * 4;
-  }
-  .box-fifth{
-    width: $first-box-width * 5;
-    height: $first-box-width * 5;
-  }
-  .cards{
-    width: 3rem;
-    position: absolute;
-    bottom: 1%;
-    right: 2%;
-    p{
-      position: absolute;
-      bottom: 0%;
-      left: 42%;
-    }
+  .flashcard-preview{
+    height: 8rem;
+    width: 12rem;
+    padding: 0.5rem 1rem;
   }
 }

@@ -32,8 +32,10 @@ export default function CategoryFlashcardsPage(){
                         <StartTraining trainingCategory={location.state.category}/>
                         <NewFlashcardButton/>
                     </div>
+                    <h2>Flashcards in {location.state.category}</h2>
                     <p className="cards-big"><img alt="" src="/icons/cards.png"/>{allFlashcardsByCategory.length}</p>
                     <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
+                    <h3>Boxes with flashcards</h3>
                     <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
                 </div>
                 :

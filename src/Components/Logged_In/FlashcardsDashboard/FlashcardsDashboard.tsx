@@ -9,10 +9,11 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
 import {useLocation} from "react-router";
+import EndTraining from "../EndTraining/EndTraining";
+import '../../../main.scss';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 400,
         flexGrow: 1,
     },
 });
@@ -87,6 +88,7 @@ export default function FlashcardsDashboard() {
             {/*        </Button>*/}
             {/*    }*/}
             {/*/>*/}
+            <EndTraining />
         </div>
     )
 }
