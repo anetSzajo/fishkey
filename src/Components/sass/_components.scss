@@ -280,6 +280,10 @@ html {
 }
 
 .box{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 4px;
   .box-first{
     width: $first-box-width;
@@ -303,7 +307,8 @@ html {
   }
   .cards{
     width: 3rem;
-    bottom: 2%;
+    position: absolute;
+    bottom: 1%;
     right: 2%;
     p{
       position: absolute;

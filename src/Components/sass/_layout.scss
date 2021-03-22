@@ -85,6 +85,11 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  margin: 3rem auto;
+  align-items: flex-end;
+  margin: 6rem auto;
+}
+.cards__container{
+  position: absolute;
+  bottom: -40px;
+  //right: 7%;
 }
