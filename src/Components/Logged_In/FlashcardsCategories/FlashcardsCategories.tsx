@@ -26,6 +26,7 @@ export default function FlashcardsCategories() {
 
     return (
         <div className="flashcardsCategoriesPage">
+            <div className="categoriesPage__background"></div>
             <h1>Flashcards' Categories</h1>
             <div className="category-btn__container">
                 {getUniqueCategories?.length

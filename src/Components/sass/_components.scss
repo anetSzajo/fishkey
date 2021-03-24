@@ -5,21 +5,58 @@ html {
   margin: unset;
   width: 100vw;
   height: 100vh;
-  //font-family: $default-font !important;
+  font-family: $default-font !important;
   background: white !important;
 }
+.categoryPage__background{
+  background: $main-color;
+  width: 100vw;
+  height: 35rem;
+  position: fixed;
+  left: 0%;
+  top: -28%;
 
+}
+.categoryPage__background__bottom{
+  background: white;
+  border-radius: 33px;
+  padding: 1rem 0.2rem;
+  margin: 4rem 0;
+  top: 30%;
+  position: relative;
+  width: 100vw;
+  margin: 5rem 0 2rem 0;
+}
+.categoriesPage__background{
+  background: $main-color;
+  border-radius: 225px;
+  transform: rotate(286deg);
+  width: 100vw;
+  height: 41rem;
+  position: fixed;
+  left: 0%;
+  top: -28%;
+}
 .button-small{
   border-radius: $default-border-radius;
   border: none;
   color: black !important;
-  box-shadow: 4px 9px 15px 0px rgb(0 0 0 / 12%);
+  box-shadow: 4px 9px 15px 0 rgb(0 0 0 / 12%);
   padding: 12px;
   margin: 0.5rem;
+  width: 9rem;
+  height: 3rem;
+}
+
+.newFlashcard-btn,
+.add-btn{
+  background: $third-color !important;
+}
+.start-btn{
+  background: #FFC2B4;
 }
 
 .logoutPage{
-  //background: $main-color !important;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +75,7 @@ html {
   border-radius: 95px;
   opacity: 0.65;
   margin: 0 auto 4rem auto;
-  box-shadow: 7px 10px 5px 0px rgb(0 0 0 / 12%);
+  box-shadow: 7px 10px 5px 0 rgb(0 0 0 / 12%);
 
   img{
     height: 100px;
@@ -57,8 +94,8 @@ html {
   font-size: 22px;
   border: none;
   color: black !important;
-  box-shadow: 4px 9px 15px 0px rgb(0 0 0 / 12%);
-  margin: 2rem 0 1rem 0 !important;
+  box-shadow: 4px 9px 15px 0 rgb(0 0 0 / 12%);
+  margin: 1rem 0 1rem 0 !important;
   a{
     text-decoration: none;
     color: black;
@@ -70,7 +107,7 @@ html {
   color: white;
 }
 .register-btn{
-  margin-top: 2rem !important;
+  margin-top: 1rem !important;
   background: $fifth-color !important;
 }
 
@@ -102,9 +139,9 @@ html {
   position: absolute;
   top: 0;
   margin: 10px;
-  padding: 4px 5px;
+  padding: 7px 10px;
   border: none;
-  background: $second-color;
+  background: $darker-main-color;
   border-radius: $default-border-radius;
   img{
     width: 1.2rem;
@@ -122,25 +159,36 @@ html {
 .flashcardsCategoryPage{
   padding-bottom: 10rem;
   h1{
-    margin: 8rem 10px 2rem 10px;
+    color: white;
+    position: relative;
+    margin: 7rem 10px 2rem 21px;
+
   }
-  h2,
+  h2{
+    margin: 2rem 0.2rem 2rem 1rem;
+    font-weight: normal;
+    font-size: 21px;
+  }
   h3{
-    margin: 4rem 0.2rem 2rem 0.2rem;
+    margin: 5rem 0.2rem 2rem 1rem;
+    font-weight: normal;
+    font-size: 18px;
   }
   .category-btn{
+    box-shadow: 4px 9px 15px 0 rgb(38 55 50 / 27%);
+    color: white;
+    background: #5AC4A4;
     position: initial;
-    height: 11rem;
+    height: 13rem;
     width: 34%;
-    border: 2px solid $second-color;
     border-radius: $default-border-radius;
     padding: 1rem;
     margin: 1rem 1rem;
     text-decoration: none;
-    color: black;
     .category-btn__name{
       font-size: 30px;
       text-align: center;
+      margin-left: 0 !important;
     }
   }
   .cards{
@@ -176,6 +224,8 @@ html {
   align-items: center;
   padding: 0.5rem;
   text-align: center;
+  background: $third-color;
+  box-shadow: 4px 9px 15px 0 #a99b5752;;
 }
 
 .footer{
@@ -205,6 +255,10 @@ html {
   justify-content: center;
   align-items: center;
   border: 1px solid grey;
+  animation-name: rotate;
+  animation-duration: 0.7s;
+  animation-direction: reverse;
+
   .flashcard-category{
     position: absolute;
     right: 3%;
@@ -238,23 +292,25 @@ html {
     -webkit-text-stroke: 2px white;
   }
 }
+
 .counter{
   font-size: 22px;
-  font-weight: bold;
 }
 
 .end-btn{
+  background: $fifth-color;
   position: fixed;
   bottom: 35%;
   left: 50%;
-  margin-left: -59.62px;
+  margin-left: -72px;
 }
 
 .notification{
   position: fixed;
   top: 25%;
   left: 50%;
-  margin-left: -94.42px;
+  margin-left: -113.51px;
+  color: $darker-main-color;
 }
 
 .next-btn,
@@ -263,7 +319,7 @@ html {
   margin: 10px;
   padding: 4px 5px;
   border: none;
-  background: $second-color;
+  background: $darker-main-color;
   border-radius: $default-border-radius;
   img {
     height: 1.5rem;
@@ -273,29 +329,38 @@ html {
 
 .next-btn:disabled,
 .back-btn:disabled{
-  background:lightgray !important;
+  display: none;
 }
 
 .next-btn{
-  right: 8%;
+  right: 2%;
   img {
     transform: rotate(180deg);
   }
 }
-
 .back-btn{
-  left: 8%;
+  left: 2%;
 }
-
 
 @media(min-width: 40rem){
   .loginPage,
   .registerPage,
-  .flashcardsCategoryPage,
   .flashcardsCategoriesPage,
-  .addNewFlashcard__container{
+  .addNewFlashcard__container,
+  .categoryPage__background__bottom{
     width: 34vw;
     margin: 55px auto;
+  }
+  .flashcardsCategoryPage{
+    position: relative;
+    width: 34vw;
+    margin: 55px auto;
+  }
+  .categoryPage__background{
+    width: 33vw;
+    left: 50%;
+    margin-left: -202.6px;
+    border-radius: 12px;
   }
   .flashcard{
     width: 28vw;
@@ -305,5 +370,16 @@ html {
     height: 8rem;
     width: 12rem;
     padding: 0.5rem 1rem;
+  }
+  .goBack-btn,
+  .logout-btn{
+    top: -10%;
+  }
+  .categoriesPage__background{
+    width: 38vw;
+    transform: rotate(0deg);
+    height: 41rem;
+    left: 33%;
+    top: -32%;
   }
 }

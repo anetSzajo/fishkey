@@ -8,6 +8,7 @@ import {useLocation} from "react-router";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import CountFlashcardByStage from "../CountFlashcardByStage/CountFlashcardByStage";
 import '../../../main.scss';
+import Logout from "../Logout/Logout";
 
 export default function CategoryFlashcardsPage(){
 
@@ -26,17 +27,21 @@ export default function CategoryFlashcardsPage(){
             {location.state.category && allFlashcardsByCategory
                 ?
                 <div className="flashcardsCategoryPage">
+                    <div className="categoryPage__background"></div>
                     <GoBackButton />
+                    <Logout />
                     <h1>Category: {location.state.category}</h1>
                     <div className="category-menu-buttons__container">
                         <StartTraining trainingCategory={location.state.category}/>
                         <NewFlashcardButton/>
                     </div>
-                    <h2>Flashcards in {location.state.category}</h2>
-                    <p className="cards-big"><img alt="" src="/icons/cards.png"/>{allFlashcardsByCategory.length}</p>
-                    <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
-                    <h3>Boxes with flashcards</h3>
-                    <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
+                    <div className="categoryPage__background__bottom">
+                        <h2>Flashcards in {location.state.category}</h2>
+                        <p className="cards-big"><img alt="" src="/icons/cards.png"/>{allFlashcardsByCategory.length}</p>
+                        <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
+                        <h3>Boxes with flashcards</h3>
+                        <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
+                    </div>
                 </div>
                 :
                 null

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {useHistory} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
@@ -10,6 +10,7 @@ import {useFirestore, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import '../../../main.scss';
+import Logout from "../Logout/Logout";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -59,8 +60,6 @@ export default function NewFlashcard() {
             .then(x => console.log(newFlashcard))
             .then(y => history.goBack())
             .catch(err => console.log('Can not add flashcard' + err))
-
-
     }
 
     return (
@@ -108,8 +107,9 @@ export default function NewFlashcard() {
                         <Button size="small" className="button-small add-btn" onClick={addNewFlashcard}>Add</Button>
                     </CardActions>
                 </form>
+                <GoBackButton/>
+                <Logout />
             </CardContent>
-            <GoBackButton/>
         </Card>
     );
 }
