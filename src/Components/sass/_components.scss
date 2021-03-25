@@ -243,21 +243,36 @@ html {
   }
 }
 
-.flashcard{
-  position: fixed;
-  width: 80vw;
-  height: 10rem;
-  padding: 1rem;
+.flashcard {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+.flashcard__face{
   background: $third-color;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: $default-border-radius;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid grey;
-  animation-name: rotate;
-  animation-duration: 0.7s;
-  animation-direction: reverse;
+}
+
+//.flashcard__face--front {
+//    background: ;
+//}
+  .flashcard__face--back {
+    transform: rotateY( 180deg );
+  }
+
+  .flashcard.isFlipped {
+    transform: translateX(0%) rotateY(-180deg);
+
+}
 
   .flashcard-category{
     position: absolute;
@@ -286,12 +301,14 @@ html {
       height: 1.5rem;
     }
   }
+.flashcard-rotate-btn:focus{
+  outline: none;
+}
   .correct{
     fill: green;
     color: blue;
     -webkit-text-stroke: 2px white;
   }
-}
 
 .counter{
   font-size: 22px;
