@@ -101,6 +101,9 @@
 
 
 @media(min-width: 40rem) {
+  .flashcard__container{
+    width: 34vw;
+  }
   .category-btn__container {
     width: 34%;
     margin: 1rem auto;

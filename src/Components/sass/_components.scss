@@ -225,7 +225,7 @@ html {
   padding: 0.5rem;
   text-align: center;
   background: $third-color;
-  box-shadow: 4px 9px 15px 0 #a99b5752;;
+  box-shadow: 4px 9px 15px 0 #a99b5752;
 }
 
 .footer{
@@ -254,6 +254,7 @@ html {
 }
 .flashcard__face{
   background: $third-color;
+  box-shadow: 4px 9px 15px 0 #a99b5752;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -271,7 +272,6 @@ html {
 
   .flashcard.isFlipped {
     transform: translateX(0%) rotateY(-180deg);
-
 }
 
   .flashcard-category{
@@ -287,7 +287,7 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 18px;
-    text-align: left;
+    text-align: left !important;
   }
   .flashcard-stage{
     padding: 0 1rem;
@@ -365,7 +365,7 @@ html {
   .flashcardsCategoriesPage,
   .addNewFlashcard__container,
   .categoryPage__background__bottom{
-    width: 34vw;
+    width: 35vw;
     margin: 55px auto;
   }
   .flashcardsCategoryPage{
@@ -374,7 +374,7 @@ html {
     margin: 55px auto;
   }
   .categoryPage__background{
-    width: 33vw;
+    width: 34vw;
     left: 50%;
     margin-left: -202.6px;
     border-radius: 12px;
@@ -398,5 +398,22 @@ html {
     height: 41rem;
     left: 33%;
     top: -32%;
+  }
+  .flashcard__face{
+    width: 90%;
+  }
+  .flashcard.isFlipped {
+    transform: translateX(-10%) rotateY(-180deg);
+  }
+  .end-btn{
+    left: 49%;
+  }
+}
+@media(min-width: 1440px) {
+  .categoryPage__background {
+      width: 34vw;
+      left: 50%;
+      margin-left: -234.29px;
+      border-radius: 12px;
   }
 }
