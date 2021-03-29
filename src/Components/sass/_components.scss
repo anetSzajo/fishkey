@@ -8,7 +8,8 @@ html {
   font-family: $default-font !important;
   background: white !important;
 }
-.categoryPage__background{
+
+.categoryPage__background {
   background: $main-color;
   width: 100vw;
   height: 35rem;
@@ -17,7 +18,8 @@ html {
   top: -28%;
 
 }
-.categoryPage__background__bottom{
+
+.categoryPage__background__bottom {
   background: white;
   border-radius: 33px;
   padding: 1rem 0.2rem;
@@ -27,7 +29,8 @@ html {
   width: 100vw;
   margin: 5rem 0 2rem 0;
 }
-.categoriesPage__background{
+
+.categoriesPage__background {
   background: $main-color;
   border-radius: 225px;
   transform: rotate(286deg);
@@ -37,7 +40,8 @@ html {
   left: 0%;
   top: -28%;
 }
-.button-small{
+
+.button-small {
   border-radius: $default-border-radius;
   border: none;
   color: black !important;
@@ -49,14 +53,15 @@ html {
 }
 
 .newFlashcard-btn,
-.add-btn{
+.add-btn {
   background: $third-color !important;
 }
-.start-btn{
+
+.start-btn {
   background: #FFC2B4;
 }
 
-.logoutPage{
+.logoutPage {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -64,7 +69,7 @@ html {
   align-items: center;
 }
 
-.logo{
+.logo {
   background: $second-color;
   display: flex;
   flex-direction: column;
@@ -77,17 +82,18 @@ html {
   margin: 0 auto 4rem auto;
   box-shadow: 7px 10px 5px 0 rgb(0 0 0 / 12%);
 
-  img{
+  img {
     height: 100px;
     width: 97px;
   }
-  p{
+
+  p {
     font-size: 16px;
   }
 }
 
 .button,
-.form-btn{
+.form-btn {
   border-radius: $default-border-radius;
   width: 382px;
   height: 77px;
@@ -96,27 +102,31 @@ html {
   color: black !important;
   box-shadow: 4px 9px 15px 0 rgb(0 0 0 / 12%);
   margin: 1rem 0 1rem 0 !important;
-  a{
+
+  a {
     text-decoration: none;
     color: black;
   }
 }
-.login-btn{
+
+.login-btn {
   background: $third-color !important;
   margin: 6rem auto 2rem auto;
   color: white;
 }
-.register-btn{
+
+.register-btn {
   margin-top: 1rem !important;
   background: $fifth-color !important;
 }
 
-.formInput{
+.formInput {
   border: 4px solid $third-color;
   color: white;
 }
+
 .loginPage,
-.registerPage{
+.registerPage {
   height: 35rem;
   background: white;
   border: 4px solid $third-color;
@@ -124,18 +134,19 @@ html {
   margin: 38px 21px;
   color: black;
   padding: 11px 10px;
-  a{
+
+  a {
     text-decoration: none;
     margin-top: 1rem;
     color: black;
   }
 }
 
-.registerPage{
+.registerPage {
   border: 4px solid $fifth-color;
 }
 
-.nav-btn{
+.nav-btn {
   position: absolute;
   top: 0;
   margin: 10px;
@@ -143,38 +154,45 @@ html {
   border: none;
   background: $darker-main-color;
   border-radius: $default-border-radius;
-  img{
+
+  img {
     width: 1.2rem;
     height: 1.2rem;
   }
 }
-.logout-btn{
+
+.logout-btn {
   right: 2%;
 }
-.goBack-btn{
+
+.goBack-btn {
   left: 2%;
 }
 
 .flashcardsCategoriesPage,
-.flashcardsCategoryPage{
+.flashcardsCategoryPage {
   padding-bottom: 10rem;
-  h1{
+
+  h1 {
     color: white;
     position: relative;
     margin: 7rem 10px 2rem 21px;
 
   }
-  h2{
+
+  h2 {
     margin: 2rem 0.2rem 2rem 1rem;
     font-weight: normal;
     font-size: 21px;
   }
-  h3{
+
+  h3 {
     margin: 5rem 0.2rem 2rem 1rem;
     font-weight: normal;
     font-size: 18px;
   }
-  .category-btn{
+
+  .category-btn {
     box-shadow: 4px 9px 15px 0 rgb(38 55 50 / 27%);
     color: white;
     background: #5AC4A4;
@@ -185,35 +203,40 @@ html {
     padding: 1rem;
     margin: 1rem 1rem;
     text-decoration: none;
-    .category-btn__name{
+
+    .category-btn__name {
       font-size: 30px;
       text-align: center;
       margin-left: 0 !important;
     }
   }
-  .cards{
+
+  .cards {
     display: flex;
     align-items: center;
     position: absolute;
     bottom: 6%;
-    img{
+
+    img {
       height: 1.2rem;
       padding-right: 3px;
     }
   }
-  .cards-big{
+
+  .cards-big {
     font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    img{
+
+    img {
       height: 3rem;
       padding-right: 7px;
     }
   }
 }
 
-.flashcard-preview{
+.flashcard-preview {
   width: 12rem;
   height: 6rem;
   margin: 2rem 4px 1rem 15px;
@@ -228,14 +251,15 @@ html {
   box-shadow: 4px 9px 15px 0 #a99b5752;
 }
 
-.footer{
+.footer {
   background-color: $fourth-color;
   opacity: $default-opacity;
   font-size: 11px;
   position: fixed;
   bottom: 0;
   width: 100vw;
-  p{
+
+  p {
     margin: 0;
     text-align: left;
     padding: 1px 0 2px 4px;
@@ -252,7 +276,8 @@ html {
   transform-style: preserve-3d;
   transform-origin: center;
 }
-.flashcard__face{
+
+.flashcard__face {
   background: $third-color;
   box-shadow: 4px 9px 15px 0 #a99b5752;
   position: absolute;
@@ -263,58 +288,77 @@ html {
   border-radius: $default-border-radius;
 }
 
-//.flashcard__face--front {
-//    background: ;
-//}
-  .flashcard__face--back {
-    transform: rotateY( 180deg );
-  }
-
-  .flashcard.isFlipped {
-    transform: translateX(0%) rotateY(-180deg);
+.flashcard__face--back {
+  transform: rotateY(180deg);
 }
 
-  .flashcard-category{
-    position: absolute;
-    right: 3%;
-    top: 7%;
-    transform: translate(-3%, -7%);
+.flashcard.isFlipped {
+  transform: translateX(0%) rotateY(-180deg);
+}
+
+.flashcard-category {
+  position: absolute;
+  right: 3%;
+  top: 7%;
+  transform: translate(-3%, -7%);
+}
+
+.flashcard-question,
+.flashcard-answer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  text-align: left !important;
+}
+
+.flashcard-stage {
+  padding: 0 1rem;
+}
+
+.flashcard-rotate-btn {
+  padding: 0 1rem;
+  border: none;
+  background: none;
+
+  img {
+    width: 2rem;
+    height: 1.5rem;
   }
-  .flashcard-question,
-  .flashcard-answer{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    text-align: left !important;
-  }
-  .flashcard-stage{
-    padding: 0 1rem;
-  }
-  .flashcard-rotate-btn{
-    padding: 0 1rem;
-    border: none;
-    background: none;
-    img{
-      width: 2rem;
-      height: 1.5rem;
-    }
-  }
-.flashcard-rotate-btn:focus{
+}
+
+.flashcard-rotate-btn:focus {
   outline: none;
 }
-  .correct{
-    fill: green;
-    color: blue;
-    -webkit-text-stroke: 2px white;
-  }
 
-.counter{
+.correct {
+  fill: green;
+  color: blue;
+  -webkit-text-stroke: 2px white;
+}
+
+.counter {
   font-size: 22px;
 }
 
-.end-btn{
+.flashcard-delete-btn{
+  position: absolute;
+  top: 62%;
+  right: 21%;
+  margin: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  border-radius: $default-border-radius;
+  opacity: $default-opacity;
+  img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+.end-btn {
   background: $fifth-color;
   position: fixed;
   bottom: 35%;
@@ -322,7 +366,7 @@ html {
   margin-left: -72px;
 }
 
-.notification{
+.notification {
   position: fixed;
   top: 25%;
   left: 50%;
@@ -331,13 +375,14 @@ html {
 }
 
 .next-btn,
-.back-btn{
+.back-btn {
   position: absolute;
-  margin: 10px;
+  margin: -12px 10px 0 10px;
   padding: 4px 5px;
   border: none;
   background: $darker-main-color;
   border-radius: $default-border-radius;
+  top: 50%;
   img {
     height: 1.5rem;
     width: 1.5rem;
@@ -345,75 +390,78 @@ html {
 }
 
 .next-btn:disabled,
-.back-btn:disabled{
+.back-btn:disabled {
   display: none;
 }
 
-.next-btn{
+.next-btn {
   right: 2%;
+
   img {
     transform: rotate(180deg);
   }
 }
-.back-btn{
+
+.back-btn {
   left: 2%;
 }
 
-@media(min-width: 40rem){
+@media(min-width: 40rem) {
   .loginPage,
   .registerPage,
   .flashcardsCategoriesPage,
   .addNewFlashcard__container,
-  .categoryPage__background__bottom{
+  .categoryPage__background__bottom {
     width: 35vw;
     margin: 55px auto;
   }
-  .flashcardsCategoryPage{
+  .flashcardsCategoryPage {
     position: relative;
     width: 34vw;
     margin: 55px auto;
   }
-  .categoryPage__background{
+  .categoryPage__background {
     width: 34vw;
     left: 50%;
     margin-left: -202.6px;
     border-radius: 12px;
   }
-  .flashcard{
+  .flashcard {
     width: 28vw;
     margin: -19rem auto;
   }
-  .flashcard-preview{
+  .flashcard-preview {
     height: 8rem;
     width: 12rem;
     padding: 0.5rem 1rem;
   }
   .goBack-btn,
-  .logout-btn{
+  .logout-btn {
     top: -10%;
   }
-  .categoriesPage__background{
+  .categoriesPage__background {
     width: 38vw;
     transform: rotate(0deg);
     height: 41rem;
     left: 33%;
     top: -32%;
   }
-  .flashcard__face{
+  .flashcard__face {
     width: 90%;
   }
   .flashcard.isFlipped {
     transform: translateX(-10%) rotateY(-180deg);
   }
-  .end-btn{
+  .end-btn {
     left: 49%;
   }
 }
+
 @media(min-width: 1440px) {
   .categoryPage__background {
-      width: 34vw;
-      left: 50%;
-      margin-left: -234.29px;
-      border-radius: 12px;
+    width: 34vw;
+    left: 50%;
+    margin-left: -234.29px;
+    border-radius: 12px;
   }
 }

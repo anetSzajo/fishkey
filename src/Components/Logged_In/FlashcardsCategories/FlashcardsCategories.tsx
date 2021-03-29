@@ -1,5 +1,5 @@
 import {useFirestore, useFirestoreCollectionData, useUser} from "reactfire";
-import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
+import {createFromFirestore, FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import '../../../main.scss';
@@ -14,7 +14,7 @@ export default function FlashcardsCategories() {
         .where("uid", "==", user.uid)
         .orderBy("category")
 
-    const allCategories: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
+    const allCategories: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data?.map(el => createFromFirestore(el));
     const getUniqueCategories: string[] = [...new Set(allCategories?.map(item => item.category))]
 
     const handleNext = () => {
@@ -33,7 +33,6 @@ export default function FlashcardsCategories() {
                     ?
                     <Link className="category-btn" to={{pathname: "/categoryPage", state: {category: getUniqueCategories[activeCategory]}}} key={`flashcard-${getUniqueCategories[activeCategory]}`}>
                         <h2 className="category-btn__name">{getUniqueCategories[activeCategory]}</h2>
-                        {/*<p className="cards" ><img alt="" src="/icons/cards.png"/>X</p>*/}
                     </Link>
                     :
                     null

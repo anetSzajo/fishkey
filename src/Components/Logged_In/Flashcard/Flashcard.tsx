@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import firebase from 'firebase/app';
-import DeleteFlashcardButton from "../DeleteFlashcardButton/DeleteFlashcardButton";
 import '../../../main.scss';
 import {STAGES} from "../../../utlis";
 
@@ -10,7 +9,7 @@ type State = {
     isFlipped: boolean
 }
 
-export default class Flashcard extends React.Component<FlashcardModel & { NO_ID_FIELD?: string }, State> {
+export default class Flashcard extends React.Component<FlashcardModel, State> {
 
     state = {
         isFlipped: false,
@@ -26,39 +25,34 @@ export default class Flashcard extends React.Component<FlashcardModel & { NO_ID_
     }
 
     updateFlashcard = (stage: number | string) => {
-        console.log('DOC ID:' + this.props.NO_ID_FIELD)
         this.db.collection('Flashes')
-            .doc(this.props.NO_ID_FIELD)
+            .doc(this.props.documentId)
             .update(
                 {
                     stage: stage,
                     isActive: false
                 }
             )
-            .then(r => console.log('Stage updated in firebase'))
+            .then(() => console.log('Stage updated in firebase'))
             .catch(err => console.log('Error when updating in firebase' + err))
     }
 
     handleCorrectButton = () => {
-        console.log('Correct button clicked');
         let {stage} = this.state;
 
         if (typeof stage === 'number') {
             if (stage === 5) {
-                console.log('Should be archive')
                 this.updateFlashcard('archived')
             } else {
                 stage = stage + 1
                 this.updateFlashcard(stage)
-                console.log("stage changed to " + stage)
             }
         }
     }
 
     handleWrongButton = () => {
-        console.log('Wrong button clicked');
         this.db.collection('Flashes')
-            .doc(this.props.NO_ID_FIELD)
+            .doc(this.props.documentId)
             .update(
                 {
                     isActive: false
@@ -112,7 +106,6 @@ export default class Flashcard extends React.Component<FlashcardModel & { NO_ID_
                         {this.renderFlashcardTemplate()}
                     </div>
                 </div>
-                {/*<DeleteFlashcardButton documentPath={`flash-${this.props.question}`}/>*/}
             </div>
         )
     }

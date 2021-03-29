@@ -37,7 +37,6 @@ function App() {
                         <AuthCheck fallback={<Redirect to='/'/>}>
                            <CategoryFlashcardsPage />
                         </AuthCheck>
-                        {/*<Logout />*/}
                     </Route>
                     <Route exact path='/dashboard'>
                         <AuthCheck fallback={<Redirect to='/'/>}>

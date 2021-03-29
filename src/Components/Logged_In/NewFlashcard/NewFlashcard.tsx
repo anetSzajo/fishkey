@@ -57,8 +57,7 @@ export default function NewFlashcard() {
 
         db.doc()
             .set(newFlashcard)
-            .then(x => console.log(newFlashcard))
-            .then(y => history.goBack())
+            .then(() => history.goBack())
             .catch(err => console.log('Can not add flashcard' + err))
     }
 

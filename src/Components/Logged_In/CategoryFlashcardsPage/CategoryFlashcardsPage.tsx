@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NewFlashcardButton from "../NewFlashcardButton/NewFlashcardButton";
 import StartTraining from "../StartTraining/StartTraining";
 import {useFirestore, useFirestoreCollectionData, useUser} from "reactfire";
-import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
+import {createFromFirestore, FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import FlashcardsPreview from "../FlashcardPreview/FlashcardPreview";
 import {useLocation} from "react-router";
 import GoBackButton from "../GoBackButton/GoBackButton";
@@ -20,7 +20,7 @@ export default function CategoryFlashcardsPage(){
         .where("uid", "==", user.uid)
         .where("category", "==", location.state.category)
 
-    const allFlashcardsByCategory: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data;
+    const allFlashcardsByCategory: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data?.map(el => createFromFirestore(el));
 
     return (
         <div>
