@@ -12,6 +12,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
 import '../../../main.scss';
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "../../../SharedComponents/Alert/Alert";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -39,6 +41,14 @@ export default function Register() {
     const classes = useStyles();
     const history = useHistory();
 
+    const [open, setOpen] = React.useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('');
+    const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('');
+    const [invalidConfirmPasswordMessage, setConfirmPasswordErrorMessage] = useState('');
+
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setEmail(event.target.value);
         if (event.target.value !== '' && !event.target.value.match(emailRegex)) {
@@ -64,7 +74,6 @@ export default function Register() {
         }
     }
 
-
     const onConfirmPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setConfirmPassword(event.target.value)
         if (password && password === event.target.value) {
@@ -74,21 +83,25 @@ export default function Register() {
         }
     }
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('');
-    const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('');
-    const [invalidConfirmPasswordMessage, setConfirmPasswordErrorMessage] = useState('');
 
     const handleSubmitRegisterForm = () => {
-        firebase.auth()
-            .createUserWithEmailAndPassword(email, confirmPassword)
-            .catch((error: any) => console.log(error))
-        console.log('Registered!')
-        history.push('/login');
+        if (email && password && confirmPassword) {
+            firebase.auth()
+                .createUserWithEmailAndPassword(email, confirmPassword)
+                .catch((error: any) => console.log(error))
+            history.push('/login');
+        }
+        else {
+            setOpen(true);
+        }
     }
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     return (
         <div className="registerPage">
@@ -167,6 +180,12 @@ export default function Register() {
                     </form>
                 </div>
             </Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
+                      anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
+                <Alert onClose={handleClose} severity="warning">
+                    Fill all required fields with * and submit.
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

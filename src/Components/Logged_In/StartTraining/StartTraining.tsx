@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Redirect} from 'react-router-dom'
 
-export default function StartTraining(props: { trainingCategory: string }){
+export default function StartTraining(props: { trainingCategory: string, disabled: boolean }){
 
     const [buttonPressed, setButtonPressed] = useState(false);
 
@@ -10,7 +10,7 @@ export default function StartTraining(props: { trainingCategory: string }){
     }
     else {
         return (
-            <button className="button-small start-btn" onClick={() => setButtonPressed(true)}>START TRAINING</button>
+            <button className="button-small start-btn" onClick={() => setButtonPressed(true)} disabled={props.disabled}>START TRAINING</button>
         )
     }
 }

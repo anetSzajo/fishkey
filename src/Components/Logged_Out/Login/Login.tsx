@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
+import Alert from "../../../SharedComponents/Alert/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 import '../../../main.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-    }
+    },
 }));
 
 export default function Login() {
@@ -41,16 +43,24 @@ export default function Login() {
     const auth = useAuth();
     const history = useHistory();
 
+    const [open, setOpen] = React.useState(false);
+    const [email, handleEmailChange] = useState('');
+    const [password, handlePasswordChange] = useState('');
+    const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('')
+    const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('')
+
     const handleSubmitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
-        console.log("Login button clicked");
         event.preventDefault();
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-        } catch (err) {
-            alert('Could not login: ' + err)
+        if (email && password) {
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (err) {
+                alert('Could not login: ' + err)
+            }
+            history.push('/home');
+        } else {
+            setOpen(true);
         }
-        console.log('Logged!')
-        history.push('/home');
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -81,10 +91,13 @@ export default function Login() {
         }
     }
 
-    const [email, handleEmailChange] = useState('');
-    const [password, handlePasswordChange] = useState('');
-    const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('')
-    const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('')
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
 
     return (
         <div className="loginPage">
@@ -150,6 +163,12 @@ export default function Login() {
                     </form>
                 </div>
             </Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
+                      anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
+                <Alert onClose={handleClose} severity="warning">
+                    Fill all required fields with * and submit.
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

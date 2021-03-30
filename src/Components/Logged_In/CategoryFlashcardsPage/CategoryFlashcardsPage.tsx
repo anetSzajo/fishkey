@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import NewFlashcardButton from "../NewFlashcardButton/NewFlashcardButton";
+import React from "react";
 import StartTraining from "../StartTraining/StartTraining";
 import {useFirestore, useFirestoreCollectionData, useUser} from "reactfire";
 import {createFromFirestore, FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
@@ -32,8 +31,7 @@ export default function CategoryFlashcardsPage(){
                     <Logout />
                     <h1>Category: {location.state.category}</h1>
                     <div className="category-menu-buttons__container">
-                        <StartTraining trainingCategory={location.state.category}/>
-                        <NewFlashcardButton/>
+                        <StartTraining trainingCategory={location.state.category} disabled={allFlashcardsByCategory.length === 0}/>
                     </div>
                     <div className="categoryPage__background__bottom">
                         <h2>Flashcards in {location.state.category}</h2>

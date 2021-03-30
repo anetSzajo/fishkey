@@ -7,6 +7,7 @@ html {
   height: 100vh;
   font-family: $default-font !important;
   background: white !important;
+  position: absolute;
 }
 
 .categoryPage__background {
@@ -24,8 +25,8 @@ html {
   border-radius: 33px;
   padding: 1rem 0.2rem;
   margin: 4rem 0;
-  top: 30%;
-  position: relative;
+  top: 33%;
+  position: absolute;
   width: 100vw;
   margin: 5rem 0 2rem 0;
 }
@@ -36,7 +37,7 @@ html {
   transform: rotate(286deg);
   width: 100vw;
   height: 41rem;
-  position: fixed;
+  position: absolute;
   left: 0%;
   top: -28%;
 }
@@ -52,11 +53,22 @@ html {
   height: 3rem;
 }
 
-.newFlashcard-btn,
+.newFlashcard-btn{
+  background: $third-color !important;
+  position: absolute;
+  top: 21%;
+  left: 50%;
+  margin: 3rem auto 1rem -72px;
+}
 .add-btn {
   background: $third-color !important;
 }
 
+.MuiAlert-filledWarning{
+  position: fixed;
+  bottom: 8%;
+  background: #FB8F67 !important;
+}
 .start-btn {
   background: #FFC2B4;
 }
@@ -102,7 +114,6 @@ html {
   color: black !important;
   box-shadow: 4px 9px 15px 0 rgb(0 0 0 / 12%);
   margin: 1rem 0 1rem 0 !important;
-
   a {
     text-decoration: none;
     color: black;
@@ -120,10 +131,11 @@ html {
   background: $fifth-color !important;
 }
 
-.formInput {
-  border: 4px solid $third-color;
-  color: white;
-}
+//.formInput:focus,
+//.formInput:active{
+//  border: 4px solid $third-color !important;
+//  color: $third-color;
+//}
 
 .loginPage,
 .registerPage {
@@ -169,6 +181,29 @@ html {
   left: 2%;
 }
 
+//input:focus{
+//  //background: $third-color;
+//  //border: 2px solid pink !important;
+//  outline: hidden !important;
+//}
+.MuiInputBase-input:focus{
+  outline: 0 !important;
+}
+//.MuiOutlinedInput-root:focus{
+//  outline-style: none;
+//}
+//.MuiOutlinedInput-root.Mui-focused,
+//.MuiOutlinedInput-notchedOutline,
+//.MuiOutlinedInput-root:hover,
+//.MuiOutlinedInput-notchedOutline{
+//  //border-color: green !important;
+//}
+////.MuiFormLabel-root.Mui-focused{
+////  color: lightgrey !important;
+////  outline: none;
+////}
+
+
 .flashcardsCategoriesPage,
 .flashcardsCategoryPage {
   padding-bottom: 10rem;
@@ -201,13 +236,14 @@ html {
     width: 34%;
     border-radius: $default-border-radius;
     padding: 1rem;
-    margin: 1rem 1rem;
+    margin: 4rem 1rem;
     text-decoration: none;
 
     .category-btn__name {
-      font-size: 30px;
+      font-size: x-large;
       text-align: center;
       margin-left: 0 !important;
+      word-break: break-word;
     }
   }
 
@@ -378,19 +414,20 @@ html {
 .back-btn {
   position: absolute;
   margin: -12px 10px 0 10px;
-  padding: 4px 5px;
+  padding: 7px 10px;
   border: none;
   background: $darker-main-color;
   border-radius: $default-border-radius;
   top: 50%;
   img {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
   }
 }
 
 .next-btn:disabled,
-.back-btn:disabled {
+.back-btn:disabled,
+.start-btn:disabled{
   display: none;
 }
 

@@ -3,6 +3,7 @@ import {createFromFirestore, FlashcardModel} from "../../../Model/Flashcard/Flas
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import '../../../main.scss';
+import NewFlashcardButton from "../NewFlashcardButton/NewFlashcardButton";
 
 export default function FlashcardsCategories() {
 
@@ -28,6 +29,7 @@ export default function FlashcardsCategories() {
         <div className="flashcardsCategoriesPage">
             <div className="categoriesPage__background"></div>
             <h1>Flashcards' Categories</h1>
+            <NewFlashcardButton />
             <div className="category-btn__container">
                 {getUniqueCategories?.length
                     ?

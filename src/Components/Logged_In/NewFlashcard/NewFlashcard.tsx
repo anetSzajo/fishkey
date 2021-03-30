@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Route, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
@@ -8,9 +8,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import {useFirestore, useUser} from "reactfire";
 import {FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
+import Snackbar from '@material-ui/core/Snackbar';
 import GoBackButton from "../GoBackButton/GoBackButton";
-import '../../../main.scss';
 import Logout from "../Logout/Logout";
+import Alert from "../../../SharedComponents/Alert/Alert";
+import '../../../main.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,16 +20,25 @@ const useStyles = makeStyles((theme: Theme) =>
             '& .MuiTextField-root': {
                 margin: theme.spacing(1),
                 width: '25ch',
-            }
+            },
+            "& .Mui-focused": {
+                border: "red",
+                outline: "green"
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+                outline: "none"
+            },
         },
     })
 )
+
 
 export default function NewFlashcard() {
     const classes = useStyles();
     const {data: user} = useUser();
     const history = useHistory();
 
+    const [open, setOpen] = React.useState(false);
     const [question, setQuestion] = useState('');
     const [category, setCategory] = useState('');
     const [answer, setAnswer] = useState('');
@@ -42,23 +53,34 @@ export default function NewFlashcard() {
         setAnswer(event.target.value)
     }
 
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
     const db = useFirestore()
         .collection('Flashes')
 
     const addNewFlashcard = () => {
-        const newFlashcard: FlashcardModel = {
-            answer: answer,
-            question: question,
-            category: category,
-            stage: 1,
-            uid: user.uid,
-            isActive: true
-        }
+        if (!category || !question || !answer) {
+            return setOpen(true);
+        } else {
+            const newFlashcard: FlashcardModel = {
+                answer: answer,
+                question: question,
+                category: category,
+                stage: 1,
+                uid: user.uid,
+                isActive: true
+            }
 
-        db.doc()
-            .set(newFlashcard)
-            .then(() => history.goBack())
-            .catch(err => console.log('Can not add flashcard' + err))
+            db.doc()
+                .set(newFlashcard)
+                .then(() => history.goBack())
+                .catch(err => console.log('Can not add flashcard' + err))
+        }
     }
 
     return (
@@ -72,7 +94,6 @@ export default function NewFlashcard() {
                             name="category"
                             id="outlined-required"
                             label="Category"
-                            defaultValue="Category"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onCategoryChange(event)}
                         />
@@ -81,7 +102,6 @@ export default function NewFlashcard() {
                             name="question"
                             id="outlined-required"
                             label="Question"
-                            defaultValue="Question"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onQuestionChange(event)}
                         />
@@ -90,7 +110,6 @@ export default function NewFlashcard() {
                             name="answer"
                             id="outlined-required"
                             label="Answer"
-                            defaultValue="Answer"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onAnswerChange(event)}
                         />
@@ -106,6 +125,11 @@ export default function NewFlashcard() {
                         <Button size="small" className="button-small add-btn" onClick={addNewFlashcard}>Add</Button>
                     </CardActions>
                 </form>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
+                    <Alert onClose={handleClose} severity="warning">
+                       Fill all required fields with * and submit.
+                    </Alert>
+                </Snackbar>
                 <GoBackButton/>
                 <Logout />
             </CardContent>
