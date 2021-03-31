@@ -5,12 +5,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, Theme} from '@material-ui/core/styles';
+import {makeStyles, withStyles, Theme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
 import Alert from "../../../SharedComponents/Alert/Alert";
@@ -38,29 +36,46 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
+const CssTextField = withStyles({
+    root: {
+        '& label.Mui-focused': {
+            color: 'rgba(0, 0, 0, 0.87)',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#F8E16C',
+        },
+        '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+                borderColor: '#F8E16C',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#F8E16C',
+            },
+        },
+        '&.MuiOutlinedInput-input:focus': {
+            background: 'white',
+        },
+    },
+})(TextField);
+
 export default function Login() {
     const classes = useStyles();
     const auth = useAuth();
     const history = useHistory();
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [email, handleEmailChange] = useState('');
     const [password, handlePasswordChange] = useState('');
     const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('')
     const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('')
 
-    const handleSubmitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
+    const isLoginButtonDisabled: boolean = (!email || invalidEmailErrorMessage || !password || invalidPasswordErrorMessage) ? true : false;
+
+    const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (email && password) {
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (err) {
-                alert('Could not login: ' + err)
-            }
-            history.push('/home');
-        } else {
-            setOpen(true);
-        }
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => history.push('/home'))
+            .catch((err) => setOpen(true))
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -80,11 +95,11 @@ export default function Login() {
     const onPasswordChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         handlePasswordChange(event.target.value);
         if (event.target.value !== '' && !event.target.value.match(passwordRegex)) {
-            setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
+            setPasswordErrorMessage('Password must be between at least 6 digits long and include at least one numeric digit.')
         } else if (event.target.value === '') {
             setPasswordErrorMessage('Password is required')
         } else if (!event.target.value.match(passwordRegex)) {
-            setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
+            setPasswordErrorMessage('Password must be at least 6 digits long and include at least one numeric digit.')
             handlePasswordChange(event.target.value)
         } else {
             setPasswordErrorMessage('')
@@ -99,6 +114,8 @@ export default function Login() {
     };
 
 
+
+
     return (
         <div className="loginPage">
             <Container component="main" maxWidth="xs">
@@ -111,8 +128,7 @@ export default function Login() {
                         Sign in
                     </Typography>
                     <form className={classes.form} noValidate onSubmit={handleSubmitLoginForm}>
-                        <TextField
-                            className="formInput"
+                        <CssTextField
                             error={invalidEmailErrorMessage ? true : false}
                             helperText={invalidEmailErrorMessage}
                             variant="outlined"
@@ -126,7 +142,7 @@ export default function Login() {
                             autoFocus
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onEmailChange(event)}
                         />
-                        <TextField
+                        <CssTextField
                             error={invalidPasswordErrorMessage ? true : false}
                             helperText={invalidPasswordErrorMessage}
                             variant="outlined"
@@ -140,16 +156,13 @@ export default function Login() {
                             autoComplete="current-password"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onPasswordChange(event)}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary"/>}
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className="button form-btn login-btn"
+                            disabled={isLoginButtonDisabled}
                         >
                             Login
                         </Button>
@@ -165,8 +178,8 @@ export default function Login() {
             </Container>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
                       anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
-                <Alert onClose={handleClose} severity="warning">
-                    Fill all required fields with * and submit.
+                <Alert onClose={handleClose} severity="error">
+                    Login or password are incorrect. Try again.
                 </Alert>
             </Snackbar>
         </div>

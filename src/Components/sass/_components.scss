@@ -63,10 +63,14 @@ html {
 .add-btn {
   background: $third-color !important;
 }
+.add-btn:disabled{
+  background: lightgrey !important;
+}
 
-.MuiAlert-filledWarning{
+.MuiAlert-filledError{
   position: fixed;
   bottom: 8%;
+  width: 90vw;
   background: #FB8F67 !important;
 }
 .start-btn {
@@ -125,17 +129,15 @@ html {
   margin: 6rem auto 2rem auto;
   color: white;
 }
+.login-btn:disabled,
+.register-btn:disabled{
+  background: lightgray !important;
+}
 
 .register-btn {
   margin-top: 1rem !important;
   background: $fifth-color !important;
 }
-
-//.formInput:focus,
-//.formInput:active{
-//  border: 4px solid $third-color !important;
-//  color: $third-color;
-//}
 
 .loginPage,
 .registerPage {

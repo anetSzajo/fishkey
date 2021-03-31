@@ -1,6 +1,5 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import firebase from 'firebase/app';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,12 +7,13 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
 import '../../../main.scss';
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "../../../SharedComponents/Alert/Alert";
+import firebase from 'firebase/app';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,18 +36,49 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const CssTextField = withStyles({
+    root: {
+        '& label.Mui-focused': {
+            color: 'rgba(0, 0, 0, 0.87)',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#F8E16C',
+        },
+        '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+                borderColor: '#F8E16C',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#F8E16C',
+            },
+        },
+        '&.MuiOutlinedInput-input:focus': {
+            background: 'white',
+        },
+    },
+})(TextField);
+
 
 export default function Register() {
     const classes = useStyles();
     const history = useHistory();
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [invalidEmailErrorMessage, setEmailErrorMessage] = useState('');
     const [invalidPasswordErrorMessage, setPasswordErrorMessage] = useState('');
     const [invalidConfirmPasswordMessage, setConfirmPasswordErrorMessage] = useState('');
+
+    const isRegisterButtonDisabled: boolean =
+        (!email || invalidEmailErrorMessage || !password || invalidPasswordErrorMessage || !confirmPassword || invalidConfirmPasswordMessage)
+            ?
+            true
+            :
+            false;
+
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setEmail(event.target.value);
@@ -70,7 +101,7 @@ export default function Register() {
         } else if (event.target.value === '') {
             setPasswordErrorMessage('Password is required')
         } else {
-            setPasswordErrorMessage('Password must be between 4 and 8 digits long and include at least one numeric digit.')
+            setPasswordErrorMessage('Password must be at least 6 digits long and include at least one numeric digit.')
         }
     }
 
@@ -83,17 +114,23 @@ export default function Register() {
         }
     }
 
-
-    const handleSubmitRegisterForm = () => {
-        if (email && password && confirmPassword) {
-            firebase.auth()
-                .createUserWithEmailAndPassword(email, confirmPassword)
-                .catch((error: any) => console.log(error))
-            history.push('/login');
-        }
-        else {
-            setOpen(true);
-        }
+    const handleSubmitRegisterForm = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
+            .then(() => history.push('/home'))
+            .catch(error => {
+                console.log(error);
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                        setAlertMessage(error.message);
+                        setOpen(true);
+                        break;
+                    case 'auth/operation-not-allowed':
+                        setAlertMessage(error.message);
+                        setOpen(true);
+                        break;
+                }
+            })
     }
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -117,7 +154,7 @@ export default function Register() {
                     <form className={classes.form} noValidate onSubmit={handleSubmitRegisterForm}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField
+                                <CssTextField
                                     error={invalidEmailErrorMessage ? true : false}
                                     helperText={invalidEmailErrorMessage}
                                     variant="outlined"
@@ -131,7 +168,7 @@ export default function Register() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <CssTextField
                                     error={invalidPasswordErrorMessage ? true : false}
                                     helperText={invalidPasswordErrorMessage}
                                     variant="outlined"
@@ -146,7 +183,7 @@ export default function Register() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <CssTextField
                                     error={invalidConfirmPasswordMessage ? true : false}
                                     helperText={invalidConfirmPasswordMessage}
                                     variant="outlined"
@@ -167,6 +204,7 @@ export default function Register() {
                             variant="contained"
                             color="primary"
                             className="button form-btn register-btn"
+                            disabled={isRegisterButtonDisabled}
                         >
                             Register
                         </Button>
@@ -182,10 +220,10 @@ export default function Register() {
             </Container>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
                       anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
-                <Alert onClose={handleClose} severity="warning">
-                    Fill all required fields with * and submit.
+                <Alert onClose={handleClose} severity="error">
+                    {alertMessage}
                 </Alert>
             </Snackbar>
         </div>
-    );
+    )
 }
