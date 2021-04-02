@@ -7,7 +7,7 @@ import EndTraining from "../EndTraining/EndTraining";
 import '../../../main.scss';
 import Logout from "../Logout/Logout";
 
-export default function FlashcardsDashboard() {
+export default function Training() {
 
     const {data: user} = useUser();
     const location = useLocation<{trainingCategory: string}>();
@@ -32,10 +32,8 @@ export default function FlashcardsDashboard() {
         (fifthStageFlashcards?.length ? fifthStageFlashcards : null);
 
     return (
-        <div>
-            <Logout />
-            {allFlashcards?.length
-                ?
+        <div className="trainingPage">
+            {allFlashcards?.length ?
                 <Flashcard {...allFlashcards[0]} />
                 :
                 <p className="notification">Good job! Everything trained</p>

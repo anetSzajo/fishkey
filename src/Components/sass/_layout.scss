@@ -3,7 +3,7 @@
 .category-btn__container {
   display: flex;
   align-items: center;
-  margin: -5rem auto;
+  margin: -2rem auto;
 }
 
 .flashcard-preview__container {
@@ -43,9 +43,8 @@
 }
 
 .flashcard__container {
-  width: 80vw;
+  min-width: 17rem;
   height: 10rem;
-  margin: 37% auto;
   perspective: 600px;
   background-color: transparent;
 }
@@ -90,4 +89,5 @@
   margin: 1rem 1rem 6rem 1rem;
   border-radius: $default-border-radius;
   box-shadow: 4px 9px 15px 0px #eea392b8;
+  width: 100%;
 }

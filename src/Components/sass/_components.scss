@@ -9,14 +9,20 @@ html {
   background: white !important;
 }
 
-.categoryPage__background__bottom{
+#root,
+.App {
+  height: 100%;
+}
+
+.categoryPage__background__bottom {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: white;
 }
 
 .categoriesPage__background,
-.categoryPage__background{
+.categoryPage__background {
   background: $main-color;
   width: 100vw;
   height: 44vh;
@@ -37,22 +43,25 @@ html {
   height: 3rem;
 }
 
-.newFlashcard-btn{
+.newFlashcard-btn {
   background: $third-color !important;
 }
+
 .add-btn {
   background: $third-color !important;
 }
-.add-btn:disabled{
+
+.add-btn:disabled {
   background: lightgrey !important;
 }
 
-.MuiAlert-filledError{
+.MuiAlert-filledError {
   position: fixed;
   bottom: 8%;
   width: 90vw;
   background: #FB8F67 !important;
 }
+
 .start-btn {
   background: #FFC2B4;
 }
@@ -99,6 +108,7 @@ html {
   color: black !important;
   box-shadow: 4px 9px 15px 0 rgb(0 0 0 / 12%);
   margin: 1rem 0 1rem 0 !important;
+
   a {
     text-decoration: none;
     color: black;
@@ -110,8 +120,9 @@ html {
   margin: 6rem auto 2rem auto;
   color: white;
 }
+
 .login-btn:disabled,
-.register-btn:disabled{
+.register-btn:disabled {
   background: lightgray !important;
 }
 
@@ -129,7 +140,9 @@ html {
   margin: 38px auto;
   color: black;
   padding: 11px 10px;
+  width: 90vw;
   max-width: fit-content;
+
   a {
     text-decoration: none;
     margin-top: 1rem;
@@ -159,28 +172,33 @@ html {
 .logout-btn {
   right: 2%;
 }
+
 .goBack-btn {
   left: 2%;
 }
 
-.MuiInputBase-input:focus{
+.MuiInputBase-input:focus {
   outline: 0 !important;
 }
+
 .flashcardsCategoriesPage,
 .flashcardsCategoryPage {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   h1 {
     color: white;
     margin: 7rem 10px 2rem 21px;
   }
+
   h2 {
     margin: 2rem 0.2rem 2rem 1rem;
     font-weight: normal;
     font-size: 21px;
   }
+
   h3 {
     margin: 5rem 0.2rem 2rem 1rem;
     font-weight: normal;
@@ -231,14 +249,14 @@ html {
 }
 
 .flashcard-preview {
-  width: 12rem;
-  height: 6rem;
+  width: 14rem;
+  height: 8rem;
   border: 3px solid $third-color;
   border-radius: $default-border-radius;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 1rem;
   text-align: center;
   background: $third-color;
   box-shadow: 4px 9px 15px 0 #a99b5752;
@@ -300,6 +318,8 @@ html {
 .flashcard-question,
 .flashcard-answer {
   position: absolute;
+  padding: 1rem;
+  width: fit-content;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -336,7 +356,7 @@ html {
   font-size: 22px;
 }
 
-.flashcard-delete-btn{
+.flashcard-delete-btn {
   position: absolute;
   bottom: 1%;
   right: 0%;
@@ -344,18 +364,24 @@ html {
   background: transparent;
   border-radius: $default-border-radius;
   opacity: $default-opacity;
+
   img {
     width: 1.2rem;
     height: 1.2rem;
   }
 }
 
+.trainingPage {
+  justify-content: center;
+  display: grid;
+  height: 100%;
+  align-content: center;
+  grid-gap: 2rem;
+  justify-items: center;
+}
+
 .end-btn {
   background: $fifth-color;
-  position: fixed;
-  bottom: 40%;
-  left: 50%;
-  margin-left: -72px;
 }
 
 .notification {
@@ -375,6 +401,7 @@ html {
   background: $darker-main-color;
   border-radius: $default-border-radius;
   top: 50%;
+
   img {
     height: 1.2rem;
     width: 1.2rem;
@@ -383,12 +410,13 @@ html {
 
 .next-btn:disabled,
 .back-btn:disabled,
-.start-btn:disabled{
+.start-btn:disabled {
   visibility: hidden;
 }
 
 .next-btn {
   right: 2%;
+
   img {
     transform: rotate(180deg);
   }
@@ -400,24 +428,11 @@ html {
 
 @media(min-width: 40rem) {
   .loginPage,
-  .registerPage{
+  .registerPage {
     width: 42vw;
   }
-  .category-btn{
+  .category-btn {
     width: 17vw !important;
     max-width: 10rem;
-  }
-  .flashcard {
-    width: 28vw;
-    margin: -19rem auto;
-  }
-  .flashcard__face {
-    width: 90%;
-  }
-  .flashcard.isFlipped {
-    transform: translateX(-10%) rotateY(-180deg);
-  }
-  .end-btn {
-    left: 49%;
   }
 }

@@ -44,5 +44,3 @@ export default function FlashcardsPreview(props: ComponentProps) {
         </div>
     )
 }
-
-// key={`flashcard-${props.flashcardsFromCategory[activeCategory]?.question}`}

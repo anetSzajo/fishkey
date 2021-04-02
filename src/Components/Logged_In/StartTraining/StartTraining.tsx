@@ -6,7 +6,7 @@ export default function StartTraining(props: { trainingCategory: string, disable
     const [buttonPressed, setButtonPressed] = useState(false);
 
     if (buttonPressed) {
-        return <Redirect push to={{pathname: '/dashboard', state: { trainingCategory: props.trainingCategory}}} />
+        return <Redirect push to={{pathname: '/training', state: { trainingCategory: props.trainingCategory}}} />
     }
     else {
         return (

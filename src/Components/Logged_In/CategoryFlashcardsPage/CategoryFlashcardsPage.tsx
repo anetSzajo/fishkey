@@ -34,7 +34,7 @@ export default function CategoryFlashcardsPage(){
                         <h2>Flashcards in {location.state.category}</h2>
                         <p className="cards-big"><img alt="" src="/icons/cards.png"/>{allFlashcardsByCategory.length}</p>
                         <FlashcardsPreview flashcardsFromCategory={allFlashcardsByCategory}/>
-                        <h3>Boxes with flashcards</h3>
+                        <h3>Flashcards in boxes</h3>
                         <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
                     </div>
                     <GoBackButton />
