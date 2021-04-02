@@ -5,10 +5,9 @@ import Flashcard from "../Flashcard/Flashcard";
 import {useLocation} from "react-router";
 import EndTraining from "../EndTraining/EndTraining";
 import '../../../main.scss';
+import Logout from "../Logout/Logout";
 
 export default function FlashcardsDashboard() {
-
-    const [activeStep, setActiveStep] = React.useState(0);
 
     const {data: user} = useUser();
     const location = useLocation<{trainingCategory: string}>();
@@ -18,9 +17,6 @@ export default function FlashcardsDashboard() {
         .where("uid", "==", user.uid)
         .where("isActive", "==", true)
         .where("category", "==", location.state.trainingCategory)
-
-
-    // const flashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery).data?.map(el => createFromFirestore(el));
 
     const firstStageFlashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery.where("stage", "==", 1)).data?.map(el => createFromFirestore(el));
     const secondStageFlashcards: FlashcardModel[] = useFirestoreCollectionData<FlashcardModel>(allFlashesQuery.where("stage", "==", 2)).data?.map(el => createFromFirestore(el));
@@ -37,11 +33,10 @@ export default function FlashcardsDashboard() {
 
     return (
         <div>
+            <Logout />
             {allFlashcards?.length
                 ?
-                <Flashcard
-                    {...allFlashcards[activeStep]}
-                />
+                <Flashcard {...allFlashcards[0]} />
                 :
                 <p className="notification">Good job! Everything trained</p>
             }

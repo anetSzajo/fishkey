@@ -1,4 +1,3 @@
-import {useAuth} from 'reactfire';
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
@@ -8,11 +7,12 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, withStyles, Theme} from '@material-ui/core/styles';
+import {makeStyles, Theme, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
 import Alert from "../../../SharedComponents/Alert/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
+import firebase from 'firebase/app';
 import '../../../main.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -60,7 +60,6 @@ const CssTextField = withStyles({
 
 export default function Login() {
     const classes = useStyles();
-    const auth = useAuth();
     const history = useHistory();
 
     const [open, setOpen] = useState(false);
@@ -73,9 +72,9 @@ export default function Login() {
 
     const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password)
-            .then(() => history.push('/home'))
-            .catch((err) => setOpen(true))
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {history.push('/home')})
+            .catch((err) => console.log(err))
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {

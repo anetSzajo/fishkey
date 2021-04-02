@@ -8,7 +8,6 @@ import LogoutHomePage from "./Components/Logged_Out/LogoutHomePgae/LogoutHomePag
 import {AuthCheck} from "reactfire";
 import NewFlashcard from "./Components/Logged_In/NewFlashcard/NewFlashcard";
 import FlashcardsDashboard from "./Components/Logged_In/FlashcardsDashboard/FlashcardsDashboard";
-import EndTraining from "./Components/Logged_In/EndTraining/EndTraining";
 import CategoryFlashcardsPage from "./Components/Logged_In/CategoryFlashcardsPage/CategoryFlashcardsPage";
 import Logout from "./Components/Logged_In/Logout/Logout";
 import Footer from "./Components/Footer/Footer";
@@ -31,7 +30,6 @@ function App() {
                         <AuthCheck fallback={<Redirect to='/'/>}>
                             <LoginHomePage/>
                         </AuthCheck>
-                        <Logout />
                     </Route>
                     <Route exact path='/categoryPage'>
                         <AuthCheck fallback={<Redirect to='/'/>}>

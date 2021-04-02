@@ -26,11 +26,8 @@ export default function CategoryFlashcardsPage(){
             {location.state.category && allFlashcardsByCategory
                 ?
                 <div className="flashcardsCategoryPage">
-                    <div className="categoryPage__background"></div>
-                    <GoBackButton />
-                    <Logout />
-                    <h1>Category: {location.state.category}</h1>
-                    <div className="category-menu-buttons__container">
+                    <div className="categoryPage__background">
+                        <h1>Category: {location.state.category}</h1>
                         <StartTraining trainingCategory={location.state.category} disabled={allFlashcardsByCategory.length === 0}/>
                     </div>
                     <div className="categoryPage__background__bottom">
@@ -40,6 +37,8 @@ export default function CategoryFlashcardsPage(){
                         <h3>Boxes with flashcards</h3>
                         <CountFlashcardByStage flashcards={allFlashcardsByCategory} />
                     </div>
+                    <GoBackButton />
+                    <Logout />
                 </div>
                 :
                 null

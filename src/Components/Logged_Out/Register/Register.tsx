@@ -119,7 +119,6 @@ export default function Register() {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => history.push('/home'))
             .catch(error => {
-                console.log(error);
                 switch (error.code) {
                     case 'auth/email-already-in-use':
                         setAlertMessage(error.message);

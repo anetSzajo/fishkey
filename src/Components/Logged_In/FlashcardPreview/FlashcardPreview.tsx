@@ -24,16 +24,17 @@ export default function FlashcardsPreview(props: ComponentProps) {
     }
 
     return (
-        <div className="flashcard-preview__container">
+        <div>
             {props?.flashcardsFromCategory.length > 0 &&
-            <div>
-                <p className="flashcard-preview"
-                   key={`flashcard-${props.flashcardsFromCategory[activeCategory]?.question}`}>{props.flashcardsFromCategory[activeCategory]?.question}</p>
-                <DeleteFlashcardButton handleDeletedFlashcard={handleDeletedFlashcard}
-                                       documentPath={props.flashcardsFromCategory[activeCategory]?.documentId}/>
+            <div className="flashcard-preview__container">
                 <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
                     <img alt="" src="/icons/backArrow.png"/>
                 </button>
+                <div className="flashcard-preview">
+                    {props.flashcardsFromCategory[activeCategory]?.question}
+                    <DeleteFlashcardButton handleDeletedFlashcard={handleDeletedFlashcard}
+                                           documentPath={props.flashcardsFromCategory[activeCategory]?.documentId}/>
+                </div>
                 <button className="next-btn" onClick={handleNext}
                         disabled={activeCategory === props?.flashcardsFromCategory.length - 1}>
                     <img alt="" src="/icons/backArrow.png"/>
@@ -43,3 +44,5 @@ export default function FlashcardsPreview(props: ComponentProps) {
         </div>
     )
 }
+
+// key={`flashcard-${props.flashcardsFromCategory[activeCategory]?.question}`}

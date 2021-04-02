@@ -2,8 +2,8 @@ import {useFirestore, useFirestoreCollectionData, useUser} from "reactfire";
 import {createFromFirestore, FlashcardModel} from "../../../Model/Flashcard/FlashcardModel";
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
-import '../../../main.scss';
 import NewFlashcardButton from "../NewFlashcardButton/NewFlashcardButton";
+import '../../../main.scss';
 
 export default function FlashcardsCategories() {
 
@@ -27,10 +27,14 @@ export default function FlashcardsCategories() {
 
     return (
         <div className="flashcardsCategoriesPage">
-            <div className="categoriesPage__background"></div>
-            <h1>Flashcards' Categories</h1>
-            <NewFlashcardButton />
+            <div className="categoriesPage__background">
+                <h1>Flashcards' Categories</h1>
+                <NewFlashcardButton />
+            </div>
             <div className="category-btn__container">
+                <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
+                    <img alt="" src="/icons/backArrow.png" />
+                </button>
                 {getUniqueCategories?.length
                     ?
                     <Link className="category-btn" to={{pathname: "/categoryPage", state: {category: getUniqueCategories[activeCategory]}}} key={`flashcard-${getUniqueCategories[activeCategory]}`}>
@@ -39,9 +43,6 @@ export default function FlashcardsCategories() {
                     :
                     null
                 }
-                <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
-                    <img alt="" src="/icons/backArrow.png" />
-                </button>
                 <button className="next-btn" onClick={handleNext} disabled={activeCategory === getUniqueCategories.length -1}>
                     <img alt="" src="/icons/backArrow.png" />
                 </button>
