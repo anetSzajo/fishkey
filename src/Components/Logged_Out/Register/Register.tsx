@@ -10,10 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {emailRegex, passwordRegex} from "../../../utlis";
-import '../../../main.scss';
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "../../../SharedComponents/Alert/Alert";
 import firebase from 'firebase/app';
+import '../../../main.scss';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(3),
+        '& .MuiButton-containedPrimary': {
+            backgroundColor: '#FB8F67',
+            margin: '2rem 0 1rem 0',
+        },
+        '& .MuiButton-root:disabled': {
+            backgroundColor: 'lightgrey',
+        },
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -42,14 +50,14 @@ const CssTextField = withStyles({
             color: 'rgba(0, 0, 0, 0.87)',
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: '#F8E16C',
+            borderBottomColor: '#FB8F67',
         },
         '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
-                borderColor: '#F8E16C',
+                borderColor: '#FB8F67',
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#F8E16C',
+                borderColor: '#FB8F67',
             },
         },
         '&.MuiOutlinedInput-input:focus': {
@@ -202,7 +210,7 @@ export default function Register() {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            className="button form-btn register-btn"
+                            className="button form-btn"
                             disabled={isRegisterButtonDisabled}
                         >
                             Register

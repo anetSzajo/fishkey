@@ -27,7 +27,7 @@ export default function FlashcardsPreview(props: ComponentProps) {
         <div>
             {props?.flashcardsFromCategory.length > 0 &&
             <div className="flashcard-preview__container">
-                <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
+                <button className="previous-btn" onClick={handleBack} disabled={activeCategory === 0}>
                     <img alt="" src="/icons/backArrow.png"/>
                 </button>
                 <div className="flashcard-preview">

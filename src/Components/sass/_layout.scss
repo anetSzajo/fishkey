@@ -16,10 +16,6 @@
   margin: 0.5rem auto;
 }
 
-.MuiPaper-root {
-  box-shadow: none !important;
-}
-
 .addNewFlashcard__container {
   display: flex;
   flex-direction: column;
@@ -39,7 +35,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: none !important;
 }
 
 .flashcard__container {

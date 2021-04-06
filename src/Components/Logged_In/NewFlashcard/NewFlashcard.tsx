@@ -15,6 +15,7 @@ import '../../../main.scss';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            boxShadow: 'none',
             '& .MuiTextField-root': {
                 margin: theme.spacing(1),
                 width: '25ch',
@@ -22,7 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
             '& .MuiCardContent-root':{
                 display: 'flex',
                 flexDirection: 'column',
-            }
+            },
+            '& .MuiButton-root': {
+                backgroundColor: '#F8E16C',
+            },
+            '& .MuiButton-root:disabled': {
+                backgroundColor: 'lightgrey',
+            },
     }})
 )
 
@@ -33,6 +40,9 @@ const CssTextField = withStyles({
         },
         '& .MuiInput-underline:after': {
             borderBottomColor: '#F8E16C',
+        },
+        '& .MuiInputBase-input:focus': {
+            outline: 0,
         },
         '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {

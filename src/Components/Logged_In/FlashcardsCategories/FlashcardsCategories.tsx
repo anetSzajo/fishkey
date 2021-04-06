@@ -32,7 +32,7 @@ export default function FlashcardsCategories() {
                 <NewFlashcardButton />
             </div>
             <div className="category-btn__container">
-                <button className="back-btn" onClick={handleBack} disabled={activeCategory === 0}>
+                <button className="previous-btn" onClick={handleBack} disabled={activeCategory === 0}>
                     <img alt="" src="/icons/backArrow.png" />
                 </button>
                 {getUniqueCategories?.length

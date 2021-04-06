@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     form: {
         width: '100%',
         marginTop: theme.spacing(1),
+        '& .MuiButton-root': {
+            backgroundColor: '#F8E16C',
+            margin: '1rem 0 1rem 0',
+        },
+        '& .MuiButton-root:disabled': {
+            backgroundColor: 'lightgrey',
+        },
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -74,7 +81,7 @@ export default function Login() {
         event.preventDefault();
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {history.push('/home')})
-            .catch((err) => console.log(err))
+            .catch((err) => setOpen(true))
     }
 
     const onEmailChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -111,8 +118,6 @@ export default function Login() {
         }
         setOpen(false);
     };
-
-
 
 
     return (
@@ -160,7 +165,7 @@ export default function Login() {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            className="button form-btn login-btn"
+                            className="button form-btn"
                             disabled={isLoginButtonDisabled}
                         >
                             Login
