@@ -5,7 +5,7 @@ export default function Logo(){
     return(
         <div className="logo">
             <img src={'/icons/AppLogo.png'} alt="" />
-            <p>© FishKey</p>
+            <p>© Fishkey</p>
         </div>
     )
 }
