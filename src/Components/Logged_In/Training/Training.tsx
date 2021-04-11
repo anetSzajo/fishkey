@@ -5,7 +5,6 @@ import Flashcard from "../Flashcard/Flashcard";
 import {useLocation} from "react-router";
 import EndTraining from "../EndTraining/EndTraining";
 import '../../../main.scss';
-import Logout from "../Logout/Logout";
 
 export default function Training() {
 
