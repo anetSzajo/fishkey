@@ -49,7 +49,7 @@ export default function CountFlashcardByStage(props: ComponentProps) {
                 <p className="counter">{countFlashcardByStage.secondBox}</p>
                 <p className="counter">{countFlashcardByStage.thirdBox}</p>
                 <p className="counter">{countFlashcardByStage.fourthBox}</p>
-                <p className="counter">{countFlashcardByStage.fourthBox}</p>
+                <p className="counter">{countFlashcardByStage.fifthBox}</p>
                 <p>I</p>
                 <p>II</p>
                 <p>III</p>
