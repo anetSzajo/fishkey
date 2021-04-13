@@ -102,7 +102,7 @@ export default class Flashcard extends React.Component<FlashcardModel, State> {
                         {this.renderFlashcardTemplate()}
                     </div>
                     <div className="flashcard__face flashcard__face--back">
-                        <div className="flashcard-answer">{this.props.answer}</div>
+                        <div className={(this.props.answer.length > 50 ? "flashcard-answer long" : "flashcard-answer")}>{this.props.answer}</div>
                         {this.renderFlashcardTemplate()}
                     </div>
                 </div>

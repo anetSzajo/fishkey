@@ -107,6 +107,7 @@ export default function NewFlashcard() {
                             label="Category"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onCategoryChange(event)}
+                            inputProps={{ maxLength: 20 }}
                         />
                         <CssTextField
                             required
@@ -115,6 +116,7 @@ export default function NewFlashcard() {
                             label="Question"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onQuestionChange(event)}
+                            inputProps={{ maxLength: 200 }}
                         />
                         <CssTextField
                             required
@@ -123,6 +125,7 @@ export default function NewFlashcard() {
                             label="Answer"
                             variant="outlined"
                             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => onAnswerChange(event)}
+                            inputProps={{ maxLength: 200 }}
                         />
                         <CssTextField
                             disabled

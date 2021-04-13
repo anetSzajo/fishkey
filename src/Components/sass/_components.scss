@@ -58,7 +58,8 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 8rem;
+  margin: 8rem auto 0 auto;
+  width: 85vw;
 }
 
 .logo {
@@ -87,7 +88,8 @@ html {
 .button,
 .form-btn {
   border-radius: $default-border-radius;
-  width: 382px;
+  width: 100%;
+  max-width: 382px;
   height: 77px;
   font-size: 22px;
   border: none;
@@ -102,7 +104,6 @@ html {
 
 .login-btn {
   background: $third-color;
-  margin: 4rem auto 0.5rem auto;
   color: white;
 }
 
@@ -166,6 +167,7 @@ html {
   h1 {
     color: white;
     margin: 7rem 10px 2rem 21px;
+    font-size: 1.5rem;
   }
 
   h2 {
@@ -224,7 +226,8 @@ html {
 }
 
 .flashcard-preview {
-  width: 14rem;
+  width: 40vw;
+  max-width: 14rem;
   height: 8rem;
   border: 3px solid $third-color;
   border-radius: $default-border-radius;
@@ -300,6 +303,9 @@ html {
   transform: translate(-50%, -50%);
   font-size: 18px;
   text-align: center;
+}
+.long{
+  font-size: 10px;
 }
 
 .flashcard-stage {
